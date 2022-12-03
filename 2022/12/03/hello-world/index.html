@@ -226,6 +226,31 @@
 
 
 
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Sp79ecsmBQdMRaqFDZwPl0vq-gzGzoHsz',
+        appKey: 'Oin4QiNXJP9fKRqn3LowTnau',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
 
 
 
@@ -265,11 +290,7 @@
   
     <div class="footer-views">
       
-          本站总访问量<span id="busuanzi_value_site_pv"></span>次
-        
       
-          本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-        
       
           本站访客数<span id="busuanzi_value_site_uv"></span>人
         
