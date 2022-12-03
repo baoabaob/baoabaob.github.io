@@ -11,7 +11,7 @@
   
   <title>
     
-      归档 
+      关于这个博客 
       
       
       |
@@ -108,41 +108,182 @@
 
 
       <div class="flex-container">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
 
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2022</span>
-          </h2>
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">关于这个博客</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2022-12-03 23:38:10
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">
+                    #随笔
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h3 id="关于这个博客"><a href="#关于这个博客" class="headerlink" title="关于这个博客"></a>关于这个博客</h3><p>用 github pages+hexo 框架搭建（很经典），主题是<a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">oranges</a>，之间看到一个很厉害的哥哥（）在用，好看又简洁，感觉挺合适的，至少暂时没找到更合适的，也没空DIY，所以就先用着吧！</p>
+<p>为什么不搭载在自己的服务器上呢？其实一开始是这么干的，但是后来放弃了。</p>
+<p>一个是因为它已经承受了太多，我已经在上面挂了两个网站还挂了个Alist，性能倒不是问题，主要是自己水平有限弄得乱糟糟的不好管理，所以干脆另辟蹊径。</p>
+<p>另一个技术层面的原因是，为了方便通常是在本地编辑完再上传到服务端，hexo对git的支持很友好，使用github pages有先天的优势，用自己的服务器可能麻烦些。</p>
+<p>最后一个是因为看到一句不知转了几手的 old saying，深以为然。</p>
+<blockquote>
+<p>起初随便找个托管平台写</p>
+<p>后来自己买服务器买域名建站写</p>
+<p>最后希望有框架拿来就写</p>
+</blockquote>
+<p>我还是挂了个域名，买来以后闲置了很久，正好可以用上。“hexyl”，含义嘛，我也不确定，可能因为我名字带he，hex是十六进制和我的专业有关，但后面也解释不清了（可能是买的时候考虑到比较便宜？），所以不如不解释了，就当随便取的了。</p>
+<p>搭完之后倒是没太大感觉。很怀念以前刚接触这些的时候，照着csdn解决了几个bug就高兴地飞起。</p>
+<p>只能感慨，活得越久，获得快乐的成本也越大了。</p>
+<p>搭建的初衷是什么呢？就像我在About里说的，”为了纾解创造欲，兴趣使然的作品“。</p>
+<p>更具体地说，我想写点什么，所以我做了些事来支持我写点什么。</p>
+<p>不过考虑到实际情况，也可能是我为了摆脱不想写作业的罪恶感而随便找了点什么事做（</p>
+<p>那就到此为止吧，我会写点什么的。</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/12/03/helloworld/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2022-12-03 23:38:10
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">
+                        #随笔
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
       
-      <div class="post-item" title="关于这个博客">
-        <div class="time-m-d">12-03</div>
-        <div class="title">
-          <a href="/2022/12/03/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2/">
-            <span>关于这个博客</span>
-          </a>
-        </div>
-      </div>
+    </div>
     
-      <div class="post-item" title="helloworld">
-        <div class="time-m-d">12-03</div>
-        <div class="title">
-          <a href="/2022/12/03/helloworld/">
-            <span>helloworld</span>
-          </a>
-        </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2"><span class="toc-text">关于这个博客</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Sp79ecsmBQdMRaqFDZwPl0vq-gzGzoHsz',
+        appKey: 'Oin4QiNXJP9fKRqn3LowTnau',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-</div>
+
 
         
 <div class="footer">
@@ -406,6 +547,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2 + '&url=' + http%3A%2F%2Fbaoabaob.github.io%2F2022%2F12%2F03%2F%25E5%2585%25B3%25E4%25BA%258E%25E8%25BF%2599%25E4%25B8%25AA%25E5%258D%259A%25E5%25AE%25A2%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://baoabaob.github.io/2022/12/03/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
