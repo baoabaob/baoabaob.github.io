@@ -11,7 +11,7 @@
   
   <title>
     
-      归档 
+      关于markdown 
       
       
       |
@@ -108,59 +108,170 @@
 
 
       <div class="flex-container">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
 
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2022</span>
-          </h2>
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">关于markdown</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2022-12-04 01:55:03
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">
+                    #随笔
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h3 id="关于markdown"><a href="#关于markdown" class="headerlink" title="关于markdown"></a>关于markdown</h3><p>感觉也许值得简单记录一下。</p>
+<p>用md记笔记是和我的女装大佬室友学的，本来也不想自己弄的，嫖他笔记嫖久了嫌他记得太抽象，萌生了我来我也行的想法。</p>
+<p>编辑器用的是Typora，没什么可讲的。</p>
+<p>图床值得讲一下。一开始用Alist+RaiDrive把网盘挂在本地了，然后顺手把图存在里面，后来有转载需求，寻思找个图床，其实可以直接用自己的服务器，但是管理起来有点麻烦，再看看主流的图床工具picgo吧，并没有服务器一键部署啥的。那我突然想到能不能用Alist当图床呢（我把Alist挂载在了服务器上）？原理上完全可行而且不难实现。翻了翻网上有一些脚本可以实现，感觉有点麻烦，能不能用picgo呢？然而原生picgo并不支持，但是它有插件啊！感谢开源，简单安装配置之后解决了问题。</p>
+<p>虽然但是，感觉一大半操作是在脱裤子放屁。</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/12/04/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%B8%8B%EF%BC%89/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2022-12-04 01:55:03
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">
+                        #随笔
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
       
-      <div class="post-item" title="关于markdown">
-        <div class="time-m-d">12-04</div>
-        <div class="title">
-          <a href="/2022/12/04/%E5%85%B3%E4%BA%8Emarkdown/">
-            <span>关于markdown</span>
-          </a>
-        </div>
-      </div>
+    </div>
     
-      <div class="post-item" title="离散数学（下）">
-        <div class="time-m-d">12-04</div>
-        <div class="title">
-          <a href="/2022/12/04/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%B8%8B%EF%BC%89/">
-            <span>离散数学（下）</span>
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Emarkdown"><span class="toc-text">关于markdown</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="关于这个博客">
-        <div class="time-m-d">12-03</div>
-        <div class="title">
-          <a href="/2022/12/03/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2/">
-            <span>关于这个博客</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="helloworld">
-        <div class="time-m-d">12-03</div>
-        <div class="title">
-          <a href="/2022/12/03/helloworld/">
-            <span>helloworld</span>
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Sp79ecsmBQdMRaqFDZwPl0vq-gzGzoHsz',
+        appKey: 'Oin4QiNXJP9fKRqn3LowTnau',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-</div>
+
 
         
 <div class="footer">
@@ -424,6 +535,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%85%B3%E4%BA%8Emarkdown + '&url=' + http%3A%2F%2Fbaoabaob.github.io%2F2022%2F12%2F04%2F%25E5%2585%25B3%25E4%25BA%258Emarkdown%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://baoabaob.github.io/2022/12/04/%E5%85%B3%E4%BA%8Emarkdown/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
