@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="blog,individual,hexo,node" />
+  <meta name="author" content="翻白肚的活鱼" />
+  <meta name="description" content="兴趣使然的，用来纾解创造欲的地方" />
+  
+  
+  <title>
+    
+      离散数学（下） 
+      
+      
+      |
+    
+     HeXyl
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">cccake</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">离散数学（下）</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2022-12-04 01:53:00
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">
+                    #笔记
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h1 id="离散数学（下）概述"><a href="#离散数学（下）概述" class="headerlink" title="离散数学（下）概述"></a>离散数学（下）概述</h1><h2 id="10-图"><a href="#10-图" class="headerlink" title="10 图"></a>10 图</h2><h3 id="10-1-图的分类"><a href="#10-1-图的分类" class="headerlink" title="10.1 图的分类"></a>10.1 图的分类</h3><img title="" src="http://150.158.191.38:5244/d/quark/picture/0eed33caebaf45c390d55e6d3db2961c1372133d.png" alt="2022-11-05-15-27-55-image.png" data-align="center">
+
+<p>* 第三行的Pseudograph直译为<strong>伪图</strong>。</p>
+<h3 id="10-2-图的术语和一些特殊的图"><a href="#10-2-图的术语和一些特殊的图" class="headerlink" title="10.2 图的术语和一些特殊的图"></a>10.2 图的术语和一些特殊的图</h3><h4 id="10-2-2-一些术语"><a href="#10-2-2-一些术语" class="headerlink" title="10.2.2 一些术语"></a>10.2.2 一些术语</h4><ul>
+<li><p>定义1    <strong>adjacent</strong>（相邻）：一条边（edge）上的两个顶点(vertex，复数为vertices)是相邻的；这条边与顶点<strong>关联</strong>（incident）</p>
+</li>
+<li><p>定义2    <strong>neighborhood</strong>（邻居）：</p>
+<p>对于图$G&#x3D;(V,E)$，</p>
+<ol>
+<li><p>对一个顶点 $v$，它的邻居 $N(v) $&#x3D; {v的所有相邻顶点}</p>
+</li>
+<li><p>对一个集合 $A$，$A$ 是 $V$ 的子集，则$N(A) &#x3D; \bigcup_{v\in A}N(v)$，即A中所有顶点的邻居的并集</p>
+</li>
+</ol>
+<p>                       </p>
+</li>
+<li><p>定义3    <strong>degree</strong>（度）：对无向图的一个顶点 $v$，它的度 $deg(v) &#x3D;$ 与其关联的边数。<strong>特别地， $v$ 上的环（loop）一个顶俩</strong>（计两次数，可以理解为一条边的两头都是 $v$，关联两次）。</p>
+<ul>
+<li><p><strong>isolated</strong>（孤立的）：指度为0的顶点</p>
+</li>
+<li><p><strong>pendant</strong>（悬挂的）：指度为1的顶点</p>
+</li>
+</ul>
+</li>
+<li><p>定理1    <strong>handshaking theorem</strong>（握手定理）：$m$ 条边的无向图，有 $2m&#x3D;\sum_{v\in V}deg(v)$，也即所有顶点的度之和是边数的两倍。注意即使有多条边和环时依然成立。</p>
+<p>这是因为一条边与两个顶点关联，就会使它们的度增加2，于是 $m$ 条边总共能使顶点有$2m$ 的度。</p>
+</li>
+<li><p>定理2    一个无向图有<u>偶数</u>个<u>度为奇数</u>的顶点。</p>
+<p>比较显然，由握手定理，所有顶点度之和为偶数$(2m)$，度为偶数的顶点的度之和一定是偶数，因此度为奇数的顶点的度之和也是偶数，因此必有偶数个。</p>
+</li>
+<li><p>定义4    $(u,v)$ 是一条有向边，则称 $u$ <strong>邻接到</strong>(adjacent to) $v$，或 $v$ 从 $u$ 邻接 (adjacent from)，$u$ 称为这条边的<strong>起点</strong>(initial vertex)，$v$ 称为<strong>终点</strong>(terminal vertex)。环具有相同的起点和终点。</p>
+</li>
+<li><p>定义5    </p>
+<ul>
+<li><p>一个顶点 $v$ 的<strong>入度</strong>(in-degree)，记作 $deg^-(v)$，就是所有 $v$ 作为终点的边的个数（被其他顶点指向的次数）</p>
+</li>
+<li><p>一个顶点 $v$ 的<strong>出度</strong>(out-degree)，记作 $deg^+(v)$，就是所有 $v$ 作为起点的边的个数（指向其他顶点的次数）</p>
+</li>
+<li><p>一个环使顶点的出度和入度同时+1</p>
+</li>
+</ul>
+</li>
+<li><p>定理3    对存在有向边的图 $G&#x3D;(V,E)$，有</p>
+<p>$\sum_{v\in V}deg^-(v)&#x3D;\sum_{v\in V}deg^+(v)&#x3D;|E|$，即 总出度&#x3D;总入度&#x3D;边总数</p>
+<p>考虑到一条边一定对应一出一入，比较显然。</p>
+</li>
+<li><p>概念：忽略一个图的有向边的方向，所构成的无向图称为<strong>基本无向图</strong>(underlying undirected graph)，一个图与它的基本无向图有相同的边数。</p>
+</li>
+</ul>
+<h4 id="10-2-3-一些特殊的图"><a href="#10-2-3-一些特殊的图" class="headerlink" title="10.2.3 一些特殊的图"></a>10.2.3 一些特殊的图</h4><ol>
+<li><p><strong>Complete Graphs</strong>（完全图）</p>
+<p>一个简单图，任意两个顶点之间都有且仅有一条边，即为完全图</p>
+<p>n个顶点的完全图是确定的，记作 $K_n$</p>
+<p>$K_n$ 有 $C^{2}_{n}&#x3D;\frac{n(n-1)}2&#x3D;\frac12(n^2-n)$</p>
+<img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-05-18-48-45-image.png" alt="" width="632">
+
+<p>相对地，如果一个简单图至少有一对顶点之间没有边，则它是不完全的 (<strong>noncomplete</strong>)</p>
+</li>
+<li><p><strong>Cycles</strong>（环图）</p>
+<p>n个顶点的图，$n\ge3$，</p>
+<p>若包括顶点 $v_1,v_2,…,v_n$ 和边${v_1,v_2},{v_2,v_3},…{v_{n-1},v_n},{v_n,v_1}$，则称为环，记作 $Cn$</p>
+<img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-05-19-02-04-image.png" alt="" width="490" data-align="center">
+</li>
+<li><p><strong>Wheels</strong>（轮图）</p>
+<p>给n顶点的环（$C_n$）再加一个顶点，然后把这个新顶点与其它所有顶点用一条边连接，就形成了轮，记作 $W_n$，需要注意 $W_n$ 只有n-1个顶点。</p>
+<img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-05-21-16-43-image.png" alt="" width="492" data-align="center">
+</li>
+<li><p><strong>n-Cubes</strong>（n维超立方体）</p>
+<p>一个n-cube有 $2^n$ 个顶点，用长度为n的二进制串给它们编号，任意两个编号恰有一位不同的顶点相邻，记作$Q_n$。</p>
+<img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-05-21-33-12-image.png" alt="" width="439" data-align="center"></li>
+</ol>
+<h4 id="10-2-4-二分图（Bipartite-Graphs）"><a href="#10-2-4-二分图（Bipartite-Graphs）" class="headerlink" title="10.2.4 二分图（Bipartite Graphs）"></a>10.2.4 二分图（Bipartite Graphs）</h4><ul>
+<li><p>定义6    <strong>bipartite graph</strong>（二分图）：对于一个简单图 $G$ ，如果它的顶点集合 $V$ 能够被划分成两个不相交的子集 $V_1$ 和 $V_2$，使得图中的每条边都连接一个 $V_1$ 中的顶点和一个 $V_2$ 中的顶点（因此 $V_1$ 或$V_2$ 内部没有边），我们称 $G$ 是<strong>二分的</strong>(bipartite)，$(V_1,V_2)$ 是 $G$ 的顶点集 $V$ 的一个<strong>划分</strong>(bipartition)。</p>
+<img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-05-22-02-34-image.png" alt="" width="327" data-align="center">
+</li>
+<li><p>定理4    一个简单图是二分的，当且仅当你可以用两种不同的颜色涂满所有顶点，保证没有两个相邻的顶点被涂上同一种颜色。</p>
+<p>显然，将两种颜色的顶点分别归于两个集合，那么这两个集合就是一个划分。</p>
+</li>
+<li><p>概念：设一个图上有一个划分 $(V_1,V_2)$ , $V_1$ 和 $V_2$ 中分别有 m 和 n 个顶点，且 $V_1$ 和 $V_2$ 中的<strong>任意</strong>两个顶点之间都有边（都是相邻的），那么这个图是<strong>完全二分图</strong>(Complete Bipartite Graphs)，记作$K_{m,n}$</p>
+<img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-05-22-21-14-image.png" alt="" data-align="center" width="572"></li>
+</ul>
+<h4 id="10-2-5-图的转换（New-Graphs-from-Old）"><a href="#10-2-5-图的转换（New-Graphs-from-Old）" class="headerlink" title="10.2.5 图的转换（New Graphs from Old）"></a>10.2.5 图的转换（New Graphs from Old）</h4><ul>
+<li><p>定义7    <strong>subgraph</strong>（子图）：一个图 $G&#x3D;(V,E)$ 的<strong>子图</strong>是一个图 $H&#x3D;(W,F)$，满足 $W\sube V$ 且 $F\sube E$。如果 $H\ne G$，那么 $H$ 是 $E$ 的<strong>真子图</strong>(proper subgraph)。</p>
+<img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-05-22-38-15-image.png" alt="" data-align="center" width="292">
+</li>
+<li><p>定义8    <strong>subgraph induced</strong>（导出子图）：由一个图的顶点集合的一个子集，和两端顶点均在这个子集中的所有边的集合组成的图，称作由这个子集导出的子图。</p>
+<p>相当于从一个图中抽出几个顶点，保留它们原本的边，这个新的图就是这些顶点导出的子图。</p>
+<p>如下图所示，取 $V_1&#x3D;{a,b,c}$，则 $V_1$ 的导出子图为右图所示</p>
+<p><img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-05-23-02-11-image.png" alt="" width="153"><img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-05-23-02-23-image.png" alt="" width="172"></p>
+</li>
+<li><p>定义9    <strong>union</strong>（并图）：设 $G_1 &#x3D; (V_1, E_1)$，$G_2 &#x3D; (V_2, E_2)$，则 $G’ &#x3D; (V_1\cup V_2, E_1\cup E_2)$ 称为 $G_1$ 和 $G_2$ 的并图 (union)，记为 $U_1\cup U_2$</p>
+<img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-05-23-15-23-image.png" alt="" data-align="center" width="595">
+</li>
+<li><p>定义（补充）    <strong>Complementary Graph</strong> 补图（绝对补图）：$G$ 的补图即完全图 $K_n$去除 $G$ 的边集后得到的图 $K_n-G$ ，记作 $\overline G$。 也即 $G$ 与 $\overline G$ 的边是互补的。</p>
+<img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-05-23-32-23-image.png" alt="" width="491" data-align="center">
+</li>
+<li><p>定义（补充） <strong>相对补图</strong>：设 $G&#x3D;(V,E)$ ，$G’&#x3D;(V’,E’)$ 为其子图，则 $G’’&#x3D;(V’’,E-E’)$ 称为 $G’$ 相对于 $G$ 的补图，其中 $V’’$ 为 $E-E’$ 中的边所关联的所有顶点的集合。（也就是说补图中不存在孤立点，因为没有一条边与它关联）</p>
+</li>
+</ul>
+<img title ="(c)是(b)相对于(a)的补图，但(b)不是(c)相对于(a)的补图" src="http://150.158.191.38:5244/d/quark/picture/2022-11-05-23-41-35-image.png" width="600px" >
+
+<h3 id="10-3-图的表示与图的同构（Representing-Graphs-and-Graph-Isomorphism）"><a href="#10-3-图的表示与图的同构（Representing-Graphs-and-Graph-Isomorphism）" class="headerlink" title="10.3 图的表示与图的同构（Representing Graphs and Graph Isomorphism）"></a>10.3 图的表示与图的同构（Representing Graphs and Graph Isomorphism）</h3><h4 id="10-3-1-Introduction"><a href="#10-3-1-Introduction" class="headerlink" title="10.3.1 Introduction"></a>10.3.1 Introduction</h4><p>有许多方式可以表示一张图，我们需要讨论几种图的表示方法。</p>
+<p>有时两张图有完全相同的形式，意思是它们保留了边的顶点能够建立起一一对应的关系，于是我们称它们是同构(isomorphic)的，判断两张图是否同构是图论中的一个重要问题。</p>
+<h4 id="10-3-2-图的表示（Representing-Graphs）"><a href="#10-3-2-图的表示（Representing-Graphs）" class="headerlink" title="10.3.2 图的表示（Representing Graphs）"></a>10.3.2 图的表示（Representing Graphs）</h4><ul>
+<li><p>概念：可以依次列出每个顶点的相邻顶点来表示一张图，这张表叫做 <strong>adjacency lists</strong>（邻接表），如果是有向图，可以列出所有起点的终点。</p>
+<p><img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-06-14-33-26-image.png" alt="" width="248"><img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-06-13-50-57-image.png" alt="" width="296"></p>
+</li>
+</ul>
+<h4 id="10-3-3-邻接矩阵（Adjacency-Matrices）"><a href="#10-3-3-邻接矩阵（Adjacency-Matrices）" class="headerlink" title="10.3.3 邻接矩阵（Adjacency Matrices）"></a>10.3.3 邻接矩阵（Adjacency Matrices）</h4><ul>
+<li><p>概念：给一个简单图 $G&#x3D;(V,E)$ 的 $n$ 个顶点编号，列为 $v_1,v_2,…,v_n$，则 G 的 <strong>adjacency matrix</strong>（邻接矩阵）$A$（或记作 $A_G$ ）是一个 $n\times n$ 的矩阵，当且仅当 $v_i $和 $v_j$ 相邻，$a_{ij}&#x3D;1$ ，否则 $a_{ij}&#x3D;0$ 。</p>
+<p>也即</p>
+<img src="http://150.158.191.38:5244/d/quark/picture/2022-11-06-14-08-43-image.png?msec=1667714929629" title="" alt="" width="251">
+
+<img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-06-14-09-37-image.png?msec=1667714983470" alt="" data-align="center" width="297">
+
+<p>而对于多重无向图，将 $a_{ij}$ 拓展为 $v_i,v_j$ 之间的边数，得到的 $[a_{ij}]$ 就是其邻接矩阵。</p>
+<img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-06-14-14-30-image.png" alt="" data-align="center" width="311">
+
+<p>值得注意的是，对于无向图，其邻接矩阵一定是对称的（两个相邻的顶点是对称的）</p>
+<p>于是可以拓展出有向图的邻接矩阵，只要令 $a_{ij}$ 是 $(v_i,v_j)$ 的边数即可（也就是以 $v_i$ 为起点，$v_j$ 为终点的边数）</p>
+</li>
+<li><p>拓展：邻接表和邻接矩阵之间的权衡（TRADE-OFFS BETWEEN ADJACENCY LISTS AND ADJACENCY MATRICES）</p>
+<p>如果一张简单图的边数相对较少，也即称之为<strong>稀疏的</strong>（sparse），那么通常更加适合使用邻接表来表示。如果用邻接矩阵表示的图是一张稀疏图，我们称它是一个<strong>稀疏矩阵</strong>（sparse matrix），它的非零元素较少，我们有一些特别的方法来记录和计算它。</p>
+<p>现在考虑一张<strong>稠密的</strong>（dense）图，它则更适合使用邻接矩阵来表示，因为当我们需要知道 ${v_i,v_j}$ 是否是图的边时，使用矩阵只需要看 $a_{ij}$ 是否为1，而使用表需要依次查找与 $v_i$ 相邻的顶点，看其中有没有 $v_j$ 。</p>
+<p>总结：稀疏图用表，稠密图用矩阵</p>
+</li>
+</ul>
+<h4 id="10-3-4-关联矩阵（Incidence-Matrices"><a href="#10-3-4-关联矩阵（Incidence-Matrices" class="headerlink" title="10.3.4 关联矩阵（Incidence Matrices)"></a>10.3.4 关联矩阵（Incidence Matrices)</h4><ul>
+<li><p>概念：设无向图 $G&#x3D;(V,E)$ ，它有 $n$ 个顶点 $v_1,v_2,…,v_n$ 和 $m$ 条边 $e_1,e_2,…e_m$，则其<strong>incidence matrices</strong>（关联矩阵）为 $[m_{ij}]$ ，满足        $                                  m_{ij}&#x3D;\begin{cases}<br>1&amp;当\space e_j\space 与\space v_i\space 相关联 \<br>0&amp;否则<br>\end{cases}$</p>
+<img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-06-14-51-25-image.png" alt="" data-align="center" width="535">
+
+<p>关联矩阵可以用来表示带环（loop）的多重图，值得注意的是用来表示环的一列有且仅有一个元素为1（因为只有一个顶点与环关联），但通常情况下一列有两个元素为1，因为通常一条边与两个顶点相关</p>
+<img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-06-14-56-35-image.png" alt="" width="564" data-align="center"></li>
+</ul>
+<h4 id="10-3-5-图的同构（Isomorphism-of-Graphs）"><a href="#10-3-5-图的同构（Isomorphism-of-Graphs）" class="headerlink" title="10.3.5 图的同构（Isomorphism of Graphs）"></a>10.3.5 图的同构（Isomorphism of Graphs）</h4><ul>
+<li><p>定义1    对于两张简单图 $G_1&#x3D;(V_1,E_1)$ 和 $G_2&#x3D;(V_2,E_2)$ ，如果存在一个 $V_1\to V_2$一一对应的（双射的）函数 $f$，满足 $a$ 和 $b$ 在 $G_1$ 中相邻，当且仅当 $f(a)$ 和 $f(b)$ 在 $G_2$ 中相邻，我们称这两张图是<strong>同构的</strong>（isomorphic），而函数 $f$ 是一个<strong>同构</strong>（isomorphism），两张不同构的简单图被称作是 <strong>nonisomorphic</strong></p>
+<p>换句话说，同构就是一个保留了相邻关系的顶点的一一对应关系。</p>
+</li>
+<li><p>拓展    有向图的同构与简单图类似，但是顶点的映射需要保留原本的方向关系，也就是说，$f$ 需要满足在 $G_1$ 中 $a$ 邻接到 $b$ ，当且仅当在 $G_2$ 中 $f(a)$ 邻接到 $f(b)$</p>
+</li>
+</ul>
+<h4 id="10-3-6-确定两张简单图是否同构"><a href="#10-3-6-确定两张简单图是否同构" class="headerlink" title="10.3.6 确定两张简单图是否同构"></a>10.3.6 确定两张简单图是否同构</h4><ul>
+<li><p>概念    确定两张图是同构的比较困难，因为我们需要确定所有的一一对应的顶点都保留了边的关系，但是确定两张图是不同构的则相对简单。一些属性在图的同构中会被保留，我们称其为<strong>graph invariant</strong>（图形不变量），比如顶点数、边数和后续提到的连通性、回路存在性等，如果这些量发生改变，我们很容易知道两张图是不同构的。</p>
+<p>每个顶点对应的度就是一个图形不变量，如果两张图的顶点的度不能形成一一对应关系，那么可以判断它们不同构。</p>
+<p>可以通过画邻接矩阵来判断两张图是否同构，如果一个矩阵能够通过行或列的交换变成另一个矩阵，那么就可以说明它们是同构的，通过比较其行列序号也可以找到对应的 $f$</p>
+<p>需要注意的是如果一个 $f$ 是一个同构，我们可以得知两张图同构，但 $f$ 不是一个同构不能推出两张图不同构，因为其它 $f$ 可能是一个同构。</p>
+</li>
+</ul>
+<h3 id="10-4-连通性（Connectivity）"><a href="#10-4-连通性（Connectivity）" class="headerlink" title="10.4 连通性（Connectivity）"></a>10.4 连通性（Connectivity）</h3><h4 id="10-4-1-Introduction"><a href="#10-4-1-Introduction" class="headerlink" title="10.4.1 Introduction"></a>10.4.1 Introduction</h4><p>许多问题都可以被建模成一条由图的边构成的路径。比如两点是否能够连通，或者寻找最优路径等，这时就可以用到图的路径模型。</p>
+<h4 id="10-4-2-路径（Paths）"><a href="#10-4-2-路径（Paths）" class="headerlink" title="10.4.2 路径（Paths）"></a>10.4.2 路径（Paths）</h4><p>通俗来讲，路径就是一系列的边，从一个顶点开始，沿着边经过一个又一个顶点。</p>
+<ul>
+<li><p>定义1</p>
+<p>设 $n ∈ N$，$G$ 是无向图，将 $G$ 中从 $u$ 到 $v$ 的 $n+1$ 个的顶点序列 $x_0 &#x3D; u, x_1, · · · , x_n &#x3D; v$ 的 $n$ 条边 $e_1, e_2, · · · , e_n$ 称为 G 的从 $u$ 到 $v$ 的长度为 $n$ 的路径 (path)，其中对于 $i &#x3D; 0, 1, · · · , n$，$e_i$ 连接 $x_{i-1}$ 和 $x_i$</p>
+<ul>
+<li><p>称以上定义的路径经过（pass through）顶点 $x_0, x_1, · · · , x_n$ 或遍历（traverse）边 $e_1, e_2, · · · , e_n$</p>
+</li>
+<li><p>当该图是简单图时，可以用顶点序列 $x_0, x_1, · · · , x_n$ 表示该路径</p>
+</li>
+<li><p>若 $u &#x3D; v$ 且 $n &gt; 0$，即该路径在相同的顶点开始和结束，则称它是<strong>回路</strong>（circuit）</p>
+</li>
+<li><p>若路径或回路不包含相同的边，则称它是 <strong>简单的</strong>（simple）</p>
+</li>
+</ul>
+</li>
+<li><p>定义2</p>
+<p>对有向图来说，它从 $u$ 到 $v$ 的长为 $n$ 的路径是图中的一系列与 $(x_0,x_1),(x_1,x_2),…,(x_{n-1},x_n)$ 关联的边 $e_1,e_2,…,e_n$，其中 $x_0&#x3D;u,x_1&#x3D;v$ ，满足前一条边的终点是后一条边的起点。如果没有多重边，路径可以记作$x_0,x_1,x_2,…,x_{n-1},x_n$，其余定义与无向图类似。</p>
+</li>
+</ul>
+<h4 id="10-4-3-无向图中的连通（Connectedness）"><a href="#10-4-3-无向图中的连通（Connectedness）" class="headerlink" title="10.4.3 无向图中的连通（Connectedness）"></a>10.4.3 无向图中的连通（Connectedness）</h4><ul>
+<li><p>定义3    <strong>connected</strong>（连通的）：如果一个无向图中的每一对不同的顶点之间都有一条路径，那么我们称它是连通的。否则称之为<strong>不连通</strong>的（disconnected）。我们说我们<strong>分割</strong>（disconnect）一个图，当我们通过移除顶点或边的方式来产生一个不连通的子图。</p>
+<p>简单来讲，连通就是指图中任意两顶点之间都有路径。</p>
+</li>
+<li><p>定理1    一个连通图中的任意两不同顶点间都一定有一条简单的路径（不走回头路）</p>
+<img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-06-17-08-31-image.png" alt="" data-align="inline" width="661">
+
+<p>简单讲：由于是连通图，任意两点间一定有一条最短路径。假如这条路径不是简单的，也即路径中有两条重复的边，那么一定有两次来到同一个顶点，把这中间的路径删除可以得到一条更短的路径，于是就矛盾了。</p>
+</li>
+<li><p>概念：一张图的<strong>connected component</strong>（连通分量）是指它的极大连通子图（不是其它连通子图的真子图）。一张不连通的图 $G$ 至少有两个或以上的连通分量，满足互不相交且它们的并图是 $G$。</p>
+<img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-06-17-19-54-image.png" alt="" width="363" data-align="center"></li>
+</ul>
+<h4 id="10-4-4-一张图是如何连通的？（How-Connected-is-a-Graph-）"><a href="#10-4-4-一张图是如何连通的？（How-Connected-is-a-Graph-）" class="headerlink" title="10.4.4 一张图是如何连通的？（How Connected is a Graph?）"></a>10.4.4 一张图是如何连通的？（How Connected is a Graph?）</h4><p>一些概念</p>
+<ol>
+<li><p>如果我们删除图中的某些点及与其关联的边，产生的子图具有比原来更多的连通分量，那么称之为<strong>cut vertices&#x2F;articulation points</strong>（割点&#x2F;关节点）。从一个连通图上删除一个割点会产生一个不连通的子图。</p>
+<p>类似地，具有这样性质的边被称为<strong>cut edge&#x2F;bridge</strong>（割边&#x2F;桥）。</p>
+<img src="http://150.158.191.38:5244/d/quark/picture/2022-11-06-17-43-31-image.png" title="" alt="" width="513">
+</li>
+<li><p>不是所有的图都有割点，比如 $K_n$ ，删去任意一个顶点只会变成 $K_{n-1}$，我们称没有割点的连通图为<strong>nonseparable graphs</strong>（不可分图）。可以认为它们比那些有割点的图连通性更强，进一步，我们可以考虑用一张图能被分割需要的最少的顶点数来衡量它的连通性。</p>
+</li>
+<li><p>如果一张连通图删去某些点（包括相关的边）之后变成了不连通的，我们称这些点组成的集合为<strong>vertex cut&#x2F;separating set</strong>（点割集）</p>
+</li>
+<li><p>定义<u>非完全图</u> $G$ 的<strong>vertex connectivity</strong>（点连通性）是一个点割集中最少的顶点数量，记作 $\kappa(G)$</p>
+<p>由于 $K_n$ 删去任意顶点之后还是完全图（于是也是连通的），因此完全图没有点割集。我们规定 $\kappa(K_n)&#x3D;n-1$，也就是把 $K_n$ 变成一个单顶点图需要删除的顶点数。</p>
+</li>
+<li><p>如果 $\kappa(G) \ge k$， 称图 $G$为 <strong>$k$-connected</strong> （$k$连通的）。</p>
+<p>1连通的图是一个非单顶点的连通图，2连通的图（称作<strong>biconnected</strong>）是不可分的（没有割点）且至少有三个顶点。注意一个 $k$ 连通的图也是 $0,1,…,k-1$连通的图。</p>
+</li>
+<li><p>类似点割集，可以定义 <strong>edge cut</strong>（边割集）和 <strong>edge connectivity</strong>（边连通性）。边连通性也即边割集可含的最少的边数，记作 $\lambda(G)$，对任意包含多于一顶点的图，这个定义都成立，因为把与一个点相关的全部边删光总能得到一个不连通的子图。</p>
+</li>
+<li><p>$\kappa(K_1)&#x3D;\lambda(K_1)&#x3D;0$</p>
+</li>
+<li><p>关于点连通性和边连通性有以下不等式</p>
+<p>$\kappa(G)\le\lambda(G)\le\min_{v\in V}deg(v)$</p>
+<p>对于后半部分，可以考虑与度最小的顶点关联的边一定是一个边割集。</p>
+<p>对于前半部分，可以考虑对于最小的边割集，其每条边上任取一端点组成的顶点集一定是点割集，这样取出的端点个数一定小于等于边的个数（可能一个顶点对应多条边）</p>
+</li>
+</ol>
+<h4 id="10-4-5-有向图的连通"><a href="#10-4-5-有向图的连通" class="headerlink" title="10.4.5 有向图的连通"></a>10.4.5 有向图的连通</h4><ul>
+<li><p>定义4    <strong>strongly connected</strong>（强连通的）：如果一个有向图的任意两个顶点 $a,b$ 之间都同时有一条从 $a$ 到 $b$ 的路径和一条从 $b$ 到 $a$ 的路径，那么称这个图是强连通的。</p>
+</li>
+<li><p>定义5    <strong>weakly connected</strong>（弱连通的）：如果一个有向图的基本无向图（删去所有边的方向）中的每一对顶点之间都有路径，则称该图是弱连通的。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="http://150.158.191.38:5244/d/quark/picture/2022-11-06-19-02-02-image.png" alt="" data-align="center" width="381">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">左图是强连通的，右图是弱连通的</div>
+</center>
+
+<img src="http://150.158.191.38:5244/d/quark/picture/image-20221110221521789.png" alt="image-20221110221521789" style="zoom:80%;" />
+</li>
+<li><p>概念：一张有向图的极大强连通子图 (不是任何强连通子图的真子图) 称为它的<strong>强连通分量</strong>（strongly connected components）或简称为<strong>强分量</strong>（strong components），</p>
+<p>需要注意的是一张有向图的两个顶点所在的强分量要么相同，要么互不相交。</p>
+<p>如果两个顶点连通，那么相同，反之互不相交</p>
+</li>
+</ul>
+<h4 id="10-4-6-路径与同构（Paths-and-Isomorphism）"><a href="#10-4-6-路径与同构（Paths-and-Isomorphism）" class="headerlink" title="10.4.6 路径与同构（Paths and Isomorphism）"></a>10.4.6 路径与同构（Paths and Isomorphism）</h4><p>我们有时可以通过路径和回路来判断两张图是否同构。比如特定长度的简单回路的存在是一个有用的不变量。除此之外，路径可以用来构造可能是同构的映射。</p>
+<h4 id="10-4-7-路径的计数（Counting-Paths-Between-Vertices"><a href="#10-4-7-路径的计数（Counting-Paths-Between-Vertices" class="headerlink" title="10.4.7 路径的计数（Counting Paths Between Vertices)"></a>10.4.7 路径的计数（Counting Paths Between Vertices)</h4><p>一个图中两个顶点间的路径数量可以用它的邻接矩阵来确定</p>
+<ul>
+<li><p>定理2    一张图（有向边或无向边均可，允许多重边和环路）的以$v_1,v_2,…,v_n$ 的顺序排列的邻接矩阵为A，则从 $v_i$ 到 $v_j$ 的长为 $r$ 的不同路径的数量为 $A^r$ 的元素 $a_{ij}$</p>
+<p>类似二元关系中的传递概念，数学归纳法易证。</p>
+</li>
+<li><p>概念：$n$ 个顶点的图 $G$ 中， $A$ 是 $G$ 的邻接矩阵，则 $B&#x3D;A+A^2+…+A^n$ 称为 $G$ 的可达性矩阵。</p>
+<p>可达性矩阵反应了图的某些性质：</p>
+<p>对于有向图：</p>
+<p>（1）$B$ 中元素全为1 当且仅当 $G$ 是强连通的（可以对应传递闭包，比较好理解）</p>
+<p>（2）$A\vee A^T$ 的可达性矩阵元素全为1 当且仅当 $G$是弱连通的（也就是消除了边的方向性）</p>
+<p>对于无向图：</p>
+<p>$B$中元素全为1 当且仅当 $G$ 是连通的（有向图的弱化版本，无向图中$A&#x3D;A^T$，也不用考虑强连通还是弱连通）</p>
+</li>
+</ul>
+<h3 id="10-5-欧拉与哈密顿路径（Euler-and-Hamilton-Paths）"><a href="#10-5-欧拉与哈密顿路径（Euler-and-Hamilton-Paths）" class="headerlink" title="10.5 欧拉与哈密顿路径（Euler and Hamilton Paths）"></a>10.5 欧拉与哈密顿路径（Euler and Hamilton Paths）</h3><h4 id="10-5-1-Introduction"><a href="#10-5-1-Introduction" class="headerlink" title="10.5.1 Introduction"></a>10.5.1 Introduction</h4><p>我们能否从一个顶点开始，遍历每一条边（不重复）之后回到这个顶点？相似地，我们能否遍历每一个顶点（不重复）之后回到这个顶点？前面的问题所描述的路径就是<strong>欧拉回路</strong>（Euler circuit），而后者则是<strong>哈密顿回路</strong>（Hamilton circuit），两者看起来很相似，但是第一个问题可以通过相对简单的，检查顶点的度的方法来确定；而第二个问题则困难许多。</p>
+<h4 id="10-5-2-欧拉路径和回路（Euler-Paths-and-Circuits）"><a href="#10-5-2-欧拉路径和回路（Euler-Paths-and-Circuits）" class="headerlink" title="10.5.2 欧拉路径和回路（Euler Paths and Circuits）"></a>10.5.2 欧拉路径和回路（Euler Paths and Circuits）</h4><ul>
+<li><p>定义1    <strong>Euler circuit</strong>（欧拉回路）：图 $G$ 中的一个<strong>欧拉回路</strong>就是一个包含了 $G$ 的每条边的简单回路。$G$ 的一个<strong>欧拉路径</strong>（Euler path）就是一个包含了 $G$ 的每条边的简单路径。有欧拉回路的图被称作<strong>欧拉图</strong>（Euler graph）。</p>
+<blockquote>
+<p>（10.4.2）若路径或回路不包含相同的边，则称它是 <strong>简单的</strong>（simple）</p>
+</blockquote>
+<p>需要注意的是对于有向图，边的方向也是需要考虑的，比如下图就没有欧拉回路或路径</p>
+<p><img src="http://150.158.191.38:5244/d/quark/picture/image-20221107180410041.png" alt="image-20221107180410041"></p>
+</li>
+<li><p>定理1    一个至少有两个顶点的连通的多重无向图有一个欧拉回路<strong>当且仅当</strong>它的每个顶点的度都是偶数。</p>
+<p><strong>先证明充分性</strong>，即存在欧拉回路的图，它的每个顶点的度都是偶数:</p>
+<p>一种理解是，可以按照顺序把欧拉回路的边列出来，比如 ${v_1,v_2},{v_2,v_3},{v_3,v_2},{v_2,v_4},{v_4,v_1}$ ，可以看到由于欧拉回路的性质，每条边都互不相同，而且每条边的顶点都首尾相接（最后的终点与最初的起点相同），也即每个顶点如果在一条边中出现一次，那么一定会在另一条不同的边中再出现一次，于是每个顶点都一定与偶数条边关联（环例外，但与后面的结论不冲突），因此每个顶点的度都是偶数的；更更直观的理解是，以一个顶点为起点，沿着欧拉回路走一圈，每进入一个顶点就要走出一个顶点，这样一次一个顶点的度加2，最后走回起点，起点一出一如度也为2，于是得证。</p>
+<p><strong>其次证明必要性</strong>，也即证明如果连通图中所有的顶点的度都是偶数，那么必然存在一个欧拉回路。这个证明相对困难，我们采用构造性证明的方法：</p>
+<p>首先我们需要证明这样的图中一定可以找到一个<strong>简单回路</strong>。</p>
+<p>我们任取图中一顶点作为起点，走到任意一个与它相邻的顶点（这是肯定可以做到的，因为顶点数量$\ge2$且是连通图），再找一个与这个点相邻的顶点，走过任意一条之前没走过的与该顶点关联的路径，不停重复这一步，直到走到一个顶点，它的任何关联路径都是之前走过的，于是操作结束。首先由于这是一个有穷图（默认），它有有限条边，而每次操作都会走过一条之前没走过的边，因此上述操作一定是可行而且可以结束的，于是我们确定它是一条简单路径（一路上没有重复的边）；不仅如此，我们可以证明它的终点一定就是起点。因为这个图的所有顶点的度都是偶数（至少为2），所以不可能停在除起点之外的顶点，否则可以反证，若停在某个顶点，如果之前没经过这个顶点，那么与这个顶点关联的边只有一条（来的这条），与度为偶数矛盾。而如果之前经过了这个顶点，每次一进一出就有两条不同的关联边，这次进来是走的最后一条关联边，那么总共还是奇数条边，依然矛盾。综上，这是一个简单路径，其起点又等于终点，因此它是一个简单回路。</p>
+<p>接下来我们来构造这张图的<strong>欧拉回路</strong>。</p>
+<p>有了上述证明的保证，我们首先在一个所有顶点的度都是偶数的连通的多重无向图 $G$ 中任意找一个简单回路。用这个简单回路经过的边及其端点构成一张 $G$ 的子图，那么显然这个子图是一张欧拉图，这个简单回路是这张子图的欧拉回路，而根据之前充分性的证明（存在欧拉回路的图，其每个顶点的度都是偶数），这个子图中所有顶点的度都是偶数。这说明简单回路中所有顶点关联的边数都为偶数。</p>
+<p>现在从 $G$ 中删除这个回路中所有的边。</p>
+<p>$(1)$ 如果回路剩下的全部都是孤立点，而 $G$ 中没有其它边了，因为 $G$ 中本来不可能有孤立点（它是连通的），那么说明这个回路中的边包含了 $G$ 中所有的边，那么这个回路就是一个欧拉回路，构造完毕。</p>
+<p>$(2)$如果回路剩下的全部都是孤立点，而 $G$ 中还有其它边，那么说明 $G$ 中有一些顶点，与回路中的任意顶点之间不存在路径，那么违反了 $G$ 的连通性，是不可能的。因此回路一定会剩下某些顶点，其关联了 $n$ 条在 $G$ 中但不在回路中的边。由于 $G$ 中任意顶点的度为偶数，而回路中任意顶点在回路中也与偶数条边关联，因此 $n$ 一定还是一个偶数。我们任选一个这样的顶点作为起点，重复之前构造简单回路的方法，沿着某条不在回路中的边，继续构造一个新的，与之前回路中的边不重复的简单回路。接着，以这个公共顶点为起点，走通新的回路，找寻回路，连接两个简单回路形成一个新的回路（比如这个顶点是 $b$ ，第一个回路是$…,a,b,c,…$，第二个回路因为是以 $b$ 为起点的，设为 $b,d,…,e,b$，那么合成之后变成$…,a,b,d,…,e,b,c,…$），这仍然是一个简单回路，于是再删除这个回路中的边。。。不停重复上述操作，由于每次构造新的简单回路都要用到之前没用过的边，而 $G$ 的边是有限的，因此总能回到情况$(1)$，于是就构造出了一个欧拉回路。</p>
+</li>
+<li><p>拓展：<strong>Fleury’s algorithm</strong>（弗罗莱算法）</p>
+<p>我们可以用弗罗莱算法求一张欧拉图的欧拉回路，其过程如下：</p>
+<ol>
+<li><p>设图为 $G$ ，从图中任取一顶点 $v_0$ ，令路径 $P_0&#x3D;v_0$；</p>
+</li>
+<li><p>假设沿 $P_i&#x3D;v_0e_1v_1e_2v_2…e_iv_i$ 走到顶点 $v_i$，按下面原则从 $E(G)-{e_1,e_2,…,e_i}中选择e_{i+1}$：</p>
+<ol>
+<li><p>$e_{i+1}$ 与 $v_i$ 相关联；</p>
+</li>
+<li><p>除非没有别的边可供选择（此时可以任选一条），$e_{i+1}$ 不是$G_i&#x3D;G-{e_1,e_2,…,e_i}$中的桥。</p>
+<blockquote>
+<p>（10.4.4）桥也即割边，当它被删除时会产生更多的连通分量</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><p>当2不能进行时算法停止。</p>
+</li>
+</ol>
+<p>可以证明，当算法停止时，得到的简单回路 $P_m&#x3D;v_0e_1v_1…e_mv_m(v_m&#x3D;v_0)$ 是 $G$ 中一条欧拉回路。</p>
+<p>简单讲，就是每次走到一个新的顶点，就选一条之前没走过的边继续走，而且尽量不走割边。</p>
+<p>可以朴素地理解为，尽量不走割边，就不会破坏图的连通性，于是就可以走完图中的每一条边。</p>
+</li>
+<li><p>定理2    一个连通的多重图有一个欧拉路径（但不存在一个欧拉回路）<strong>当且仅当</strong>它恰有两个顶点的度为奇数。</p>
+<p>和欧拉回路类似。区别就是，一个起点和一个终点，前者某次只出不进，后者某次只进不出，它们的度都是奇数，其余顶点的度为偶数。</p>
+<p>应用这个定理我们可以判断一笔画问题有没有有解；如果有解的话，任取一个度为奇数的点作为起点，然后尽量不走割边即可。</p>
+</li>
+<li><p>定理（拓展）</p>
+<ul>
+<li><p>含有至少2个顶点的有向多重图具有欧拉回路<strong>当且仅当</strong>它是弱连通（这里说强连通也是等价的，因为弱连通且满足后面条件的有向图一定是强连通）的，且每个顶点的入度等于出度。</p>
+<p>和无向图的证明类似。</p>
+</li>
+<li><p>含有至少2个顶点的有向图具有欧拉路径<strong>当且仅当</strong>该图是连通的，且恰好含有两个顶点，一个入度比出度大1，一个入度比出度小1，其余顶点的入度等于出度。</p>
+<p>和无向图的证明类似。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="10-5-3-哈密顿路径和回路（Hamilton-Paths-and-Circuits）"><a href="#10-5-3-哈密顿路径和回路（Hamilton-Paths-and-Circuits）" class="headerlink" title="10.5.3 哈密顿路径和回路（Hamilton Paths and Circuits）"></a>10.5.3 哈密顿路径和回路（Hamilton Paths and Circuits）</h4><ul>
+<li><p>定义2	图 $G$ 中一条恰好经过所有顶点一次的简单路径被称为<strong>哈密顿路径</strong>（Hamilton path），而 $G$ 中一个恰经过每个顶点一次的简单回路被称为<strong>哈密顿回路</strong>（Hamilton circuit），简称H回路。存在哈密顿回路的图被称为哈密顿图。</p>
+<p>哈密顿回路还可以被定义成一个首尾相接的哈密顿路径。</p>
+</li>
+<li><p>定理（拓展）：$K_n(n\ge3)$ 一定有哈密顿回路。</p>
+<p>实际上，更强地，$C_n(n\ge3)$ 就一定有哈密顿回路。</p>
+<blockquote>
+<p>（10.2.3）$K_n$ 即 $n$ 个顶点的完全图，$C_n$ 即 $n$ 个顶点的环。</p>
+</blockquote>
+</li>
+<li><p>拓展：哈密顿回路存在的条件</p>
+<p>与欧拉回路不同，哈密顿回路的存在并没有一个简单的充要条件（尽管它们很相似）。不过，许多理论给出了哈密顿回路存在的充分条件，此外，我们可以根据图的某些属性确定一张图没有哈密顿回路。</p>
+<p>比如，一张图中如果存在一个度为1的顶点，那么它一定没有哈密顿回路（显然它根本无法构成回路）。</p>
+<p>一个哈密顿回路中的每个顶点都恰与回路中的两条边相关联（恰好一进一出）。</p>
+<p>进一步地，一张图中如果有一个顶点的度为2，那么它的两条相关边必然都在哈密顿回路中（如果存在）。</p>
+<p>又或者，如果你正在构造一条哈密顿回路，当它经过了其中某个顶点，那么除了它经过的那两条边，其余与这个顶点关联的边都可以不再考虑。</p>
+<p>此外，一条哈密顿回路的内部不会包含一个更小的回路。否则删去小回路，由于连通性，小回路内部必然有一个顶点与外部有边关联，而这个顶点又一定和小回路内部两条边关联，因此它的关联边数大于2。这在哈密顿回路中是不可能的。</p>
+</li>
+</ul>
+<p>尽管目前还没有找到一个实用的哈密顿回路存在的充要条件（实际上这是一个NP难问题），但我们已知几种充分条件。记住，一张图的边越多，它存在哈密顿回路的可能性就越大；同时，给一张哈密顿图加边（而不是顶点），它仍然具有相同的哈密顿回路（参考之前提到的，可以忽略哈密顿回路之外的边）。于是我们可以不停地给一张图加边（特别是你确定加边能增加存在哈密顿回路的可能性），直到其顶点的度充分大，保证哈密顿图的存在。</p>
+<p>下面给出一些重要的充分条件。（我们默认图是连通的）</p>
+<ul>
+<li><p>定理1    <strong>Dirac’s theorem</strong>（狄拉克定理）：如果 $G$ 是一个有 $n$ 个顶点（$n\ge3$）的简单图，且满足 $G$ 中每个顶点的度至少为 $n&#x2F;2$ ，那么 $G$ 必有一个哈密顿回路。</p>
+</li>
+<li><p>定理2    <strong>Ore’s theorem</strong>（奥勒定理）：如果 $G$ 是一个有 $n$ 个顶点（$n\ge3$）的简单图，且满足对于 $G$ 中每一对不相邻的顶点 $u$ 和 $v$，都有 $deg(u)+deg(v)\ge n$，那么 $G$ 必有一个哈密顿回路。</p>
+</li>
+<li><p>定理（拓展）    设 $G$ （一个连通的简单图）的边数为 $m$ ，顶点数为 $n$ ，则若 $m\ge(n^2-3n+6)&#x2F;2$，那么 $G$ 必有一个哈密顿回路。</p>
+<p>证明：假设 $u,v$ 是 $G$ 中任意两个不相邻的顶点，把 $u$ 和 $v$ 及以它们为端点的边从 $G$ 中删去，得到子图 $H$ ，那么 $H$ 有 $n-2$ 个顶点和 $m-deg(u)-deg(v)$ 条边。因为 $H$ 的边数最大为 $C_{n-2}^{2}$ （即任意两顶点之间都有一条边），也就是<br>$$<br>\frac{(n-2)(n-3)}2\ \ or \ \ \frac{1}2(n^2-5n+6)<br>$$<br>于是 $m-deg(u)-deg(v)\le \frac{1}2(n^2-5n+6)$，也即 $deg(u)+deg(v)\ge m-\frac{1}2(n^2-5n+6)$，又由定理的条件 $m\ge(n^2-3n+6)&#x2F;2$ ，可知 $deg(u)+deg(v)\ge n$，满足奥勒定理的条件，于是得证。</p>
+</li>
+<li><p>定理（拓展）    设无向图 $G&#x3D;&lt;V,E&gt;$ 是哈密顿图，$V_1$ 是 $V$ 的任意非空子集，则 $\mid P(G-V_1)\mid\le\mid V_1\mid$，其中 $P(G-V_1)$ 是从 $G$ 中删除 $V_1$ （包括其中顶点及其关联的边）后的子图的连通分量的集合。</p>
+<p>简单讲，就是删去一张哈密顿图中的某些顶点，得到的子图的连通分量数量一定比删去的顶点数量要少。可以把它作为哈密顿回路存在的必要条件。</p>
+<img src="http://150.158.191.38:5244/d/quark/picture/image-20221109160148079.png" alt="image-20221109160148079" style="zoom: 33%;" />
+
+<p>如上图，删去 $V_1$ 和 $V_3$ 两个顶点，剩下的图有三个连通分量，那么它不是哈密顿图。</p>
+</li>
+</ul>
+<h4 id="10-5-4-哈密顿回路的应用"><a href="#10-5-4-哈密顿回路的应用" class="headerlink" title="10.5.4 哈密顿回路的应用"></a>10.5.4 哈密顿回路的应用</h4><p>除了一些数据传输问题，我们讨论一下哈密顿回路在编码上的应用</p>
+<ul>
+<li><p>格雷码</p>
+<p>$n$ 位的格雷码编码问题实际上就是寻找 $Q_n$ 的一条哈密顿路径。 </p>
+<blockquote>
+<p>（10.2.3）</p>
+<p><strong>n-Cubes</strong>（n维超立方体）</p>
+<p>一个n-cube有 $2^n$ 个顶点，用长度为n的二进制串给它们编号，任意两个编号恰有一位不同的顶点相邻，记作$Q_n$。</p>
+<img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-05-21-33-12-image.png" alt="" width="439" data-align="center"></blockquote>
+</li>
+</ul>
+<h3 id="10-6-最短路径问题（Shortest-Path-Problems）"><a href="#10-6-最短路径问题（Shortest-Path-Problems）" class="headerlink" title="10.6 最短路径问题（Shortest-Path Problems）"></a>10.6 最短路径问题（Shortest-Path Problems）</h3><h4 id="10-6-1-Introduction"><a href="#10-6-1-Introduction" class="headerlink" title="10.6.1 Introduction"></a>10.6.1 Introduction</h4><p>许多问题都可以被建模成边上带权的图。</p>
+<p>比如下面是一张里程图</p>
+<img src="http://150.158.191.38:5244/d/quark/picture/image-20221109164005888.png" alt="image-20221109164005888" style="zoom:67%;" />
+
+<ul>
+<li>定义    <strong>weighted graphs</strong>（有权图）：给每条边都分配了一个数（权）的图被称为有权图。</li>
+<li>定义    <strong>length</strong>（长度）：在一张有权图中，一条路径的长度指路径上所有边的权的和。注意这里的长度要与无权图中路径的长度，也即路径包含的边数区别。</li>
+</ul>
+<h4 id="10-6-2-一个最短路径算法（A-Shortest-Path-Algorithm）"><a href="#10-6-2-一个最短路径算法（A-Shortest-Path-Algorithm）" class="headerlink" title="10.6.2 一个最短路径算法（A Shortest-Path Algorithm）"></a>10.6.2 一个最短路径算法（A Shortest-Path Algorithm）</h4><p>对于寻找有权图中的两个顶点的最短路径问题，有几种不同的算法。我们将介绍一种由迪科斯彻发明的贪心算法（greedy algorithm）（是指一类算法），并且只介绍一个只适用于无向的，权为正数的有权图的版本。</p>
+<ul>
+<li><p>定理1    <strong>迪科斯彻算法</strong>（Dijkstra’s algorithm）可以找到一个连通简单无向正权图中两个顶点间的最短路径。</p>
+<p>简述：</p>
+<ol>
+<li>将起点的权初始化为0，所有其它顶点初始化为 $\infin$ 。</li>
+<li>找到图中权最小的顶点 $v$ ，如果这个顶点就是终点，则顶点记录的路径就是最短路径。终止。</li>
+<li>考虑所有 $v$ 的相邻顶点的权，如果大于 $v$ 的权+两顶点之间的边的权，那么把相邻顶点的权更新为后者，并且在这个相邻顶点记录的路径的结尾加上 $v$。</li>
+<li>从图中删去 $v$ ，意思是之后找顶点时不再考虑 $v$ 。</li>
+<li>回到步骤2。</li>
+</ol>
+<p>可以参考下图，起点为 $a$，终点为 $z$ 。</p>
+<p><img src="http://150.158.191.38:5244/d/quark/picture/image-20221109172919995.png" alt="image-20221109172919995"></p>
+</li>
+<li><p>定理2    迪科斯彻算法求 $n$ 个顶点的图中两顶点最短路径的时间复杂度为 $O(n^2)$ （在加法和比较运算上）。</p>
+</li>
+</ul>
+<p>（拓展）使用一次迪科斯彻算法可以计算出从某个点到其它任意点之间的最短路径，但是如果想要寻找任意两个顶点间的最短路径，我们可能需要使用 $n$ 次迪科斯彻算法。这时我们可以采用矩阵来批量求解。</p>
+<ul>
+<li><p>定义（拓展）    <strong>Distance Matrix</strong>（距离矩阵）：设 $G$ 是一张带有 $n$ 个顶点的图，它的距离矩阵是 $D&#x3D;(d_{ij})_{n\times n}$ ，它满足如下性质：</p>
+<ul>
+<li>$d_{ij}$ 表示边 $(v_i,v_j)$ 的权值</li>
+<li>如果 $v_i$ 和 $v_j$ 之间没有边，那么 $d_{ij}&#x3D;\infin$ </li>
+<li>令 $D^2&#x3D;D* D&#x3D;(d_{ij}^2)_{n\times n}$</li>
+<li>$d_{ij}^2&#x3D;min{d_{i1}+d_{1j},d_{i2}+d_{2j},…,d_{in}+d_{nj}}$，实际上 $d_{ij}^2$ 就是从 $v_i$ 到 $v_j$ 的最短的两条边的路径</li>
+<li>同样地，令 $D^k&#x3D;D^{k-1}*D&#x3D;(d_{ij}^k)<em>{n\times n}$，实际上 $d</em>{ij}^k$ 就是从 $v_i$ 到 $v_j$ 的最短的 $k$ 条边的路径</li>
+</ul>
+</li>
+<li><p>定义（拓展）    定义与距离矩阵相关的运算 $\oplus$ ，令 $A&#x3D;(a_{ij})<em>{n\times n},B&#x3D;(b</em>{ij})<em>{n\times n}$，$C&#x3D;A\oplus B&#x3D;(c</em>{ij})<em>{n\times n}$，则$c</em>{ij}&#x3D;min(a_{ij},b_{ij})$。</p>
+<p>那么，设 $P&#x3D;D\oplus D^2 \oplus …\oplus D^n$ ，且 $P&#x3D;(p_{ij})<em>{n\times n}$，实际上 $p</em>{ij}$ 就是从 $v_i$ 到 $v_j$ 的最短路径长度。</p>
+</li>
+</ul>
+<p>综上，我们可以通过计算距离矩阵的方式，批量求出任意两顶点的最短距离。</p>
+<p>实际上在数据结构中会提到，这个算法就是弗洛伊德（Floyd）算法。</p>
+<h4 id="10-6-3-旅行商问题"><a href="#10-6-3-旅行商问题" class="headerlink" title="10.6.3 旅行商问题"></a>10.6.3 旅行商问题</h4><p>有许多城市，一个旅行商想找到一条最短的路，从一个城市出发，遍历所有城市（不重复）然后回到起点，这就是旅行商问题。这是一个NP难问题。</p>
+<p>这实际上就是求解无向完全有权图中的最短哈密顿回路的问题。</p>
+<p>因为这是一个NP难问题，当规模较大时，目前没有算法能够在合理时间内计算出精确解，但我们可以采取一种<strong>近似算法</strong>（approximation algorithm），计算出近似的最短回路。</p>
+<ul>
+<li><p>拓展：最近领域算法（nearest neighbor method）</p>
+<p>这个算法其实很简单，就和名字一样，从一个起点开始，每次都前往距离当前顶点最近的顶点，最后再走回起点，这样就组成了一个近似的最短回路。以下是更正式的描述。</p>
+<p>对于 $n$ 个顶点的有向加权完全图的最短哈密顿回路，其求解步骤如下：</p>
+<ol>
+<li>从任意顶点 $v_1$ 出发，取与 $v_1$ 距离最近的顶点 $v_2$​ ，记 $(v_1, v_2)$ 为经过这两个顶点的路径。</li>
+<li>如果已经记录了路径 $(v_1,v_2,…,v_p),p&lt;n$，取不在路径中且与 $v_p$ 距离最近的顶点$v_{p+1}$ 加入路径末尾。</li>
+<li>重复步骤2直到$p+1&#x3D;n$，此时将边 ${v_n,v_1}$ 加入道路，则 $(v_1,v_2,…v_n,v_1)$ 即为所求近似解。</li>
+</ol>
+</li>
+</ul>
+<p>这种方法的近似程度如何呢？下面是对于某类特殊的图，该算法的近似程度的描述。</p>
+<ul>
+<li>定理（拓展）    设 $G&#x3D;(V,E,W)$ 是有 $n$ 个顶点的完全无向图，其中 $W$ 是边权的集合，$w(i,j)$ 即 $e_{ij}$ 的权，若对于任意顶点 $v_i,v_j,v_k$ ，$G$ 满足三角不等式 $w(i,j)+w(j,k)\ge w(i,k)$，那么记$d_0$ 是最短 $H$ 回路（哈密顿回路的缩写）的长度，$d$ 是最近领域法得到的近似长度，有：<br>$$<br>\frac{d}{d_0}\le\frac{1}2[log_{2}{n}]+\frac{1}2,[x]即取x的整数部分<br>$$</li>
+</ul>
+<h3 id="10-7-平面图（Planar-Graphs）"><a href="#10-7-平面图（Planar-Graphs）" class="headerlink" title="10.7 平面图（Planar Graphs）"></a>10.7 平面图（Planar Graphs）</h3><h4 id="10-7-1-Introduction"><a href="#10-7-1-Introduction" class="headerlink" title="10.7.1 Introduction"></a>10.7.1 Introduction</h4><p>考虑这样一个问题，每个房子需要连接三个电器，现在一共有三个房子，有没有一种画线的方法能不能保证线之间不相交呢？</p>
+<img src="http://150.158.191.38:5244/d/quark/picture/image-20221109183740568.png" alt="image-20221109183740568" style="zoom: 67%;" />
+
+<p>这个问题实际上可以被转换成：我们能不能在平面中，用两两不相交的边绘制出完全二分图$K_{3,3}$呢？</p>
+<blockquote>
+<p>（10.2.4）</p>
+<p>设一个图上有一个划分 $(V_1,V_2)$ , $V_1$ 和 $V_2$ 中分别有 m 和 n 个顶点，且 $V_1$ 和 $V_2$ 中的<strong>任意</strong>两个顶点之间都有边（都是相邻的），那么这个图是<strong>完全二分图</strong>(Complete Bipartite Graphs)，记作$K_{m,n}$</p>
+<img title="" src="http://150.158.191.38:5244/d/quark/picture/2022-11-05-22-21-14-image.png" alt="" data-align="center" width="572">
+</blockquote>
+<p>我们将在这一章学习如何确定一张图能不能在没有边交叉的情况下被画在平面上。</p>
+<ul>
+<li>定义1	一张图被称作是<strong>平面的</strong>（planar）如果它能被画在平面上，且所有边不相交（这里的相交可以被定义为，用来表示边的线或弧相互之间存在交点，除了端点处）。这样的一种画法被称为图的一个<strong>平面表示</strong>（planar representation）。</li>
+</ul>
+<h4 id="10-7-2-欧拉公式"><a href="#10-7-2-欧拉公式" class="headerlink" title="10.7.2 欧拉公式"></a>10.7.2 欧拉公式</h4><p>一张图的平面表示把平面划分成了若干的<strong>区域</strong>（regions），包括无界的区域。</p>
+<p><img src="http://150.158.191.38:5244/d/quark/picture/image-20221110115602982.png" alt="image-20221110115602982"></p>
+<p>我们可以把它们称作<strong>面</strong>（face）。</p>
+<ul>
+<li><p>定义（拓展）    图 $G$ 的一个面是由 $G$ 的边所包围的，并且其内部不含 $G$ 的顶点和边的一个区域。</p>
+<p>我们称组成一个区域 $R$ 的边界回路中的边数为 $R$ 的度数（degree），记作 $deg(R)$，需要注意如果一条边在回路中出现两次，那么它使区域的度增加 $2$。</p>
+<img src="http://150.158.191.38:5244/d/quark/picture/image-20221117151129824.png" alt="image-20221117151129824" style="zoom: 67%;" />
+</li>
+<li><p>定理1    <strong>欧拉公式</strong>（Euler’s Formula）若 $G$ 是一个连通平面简单图，有 $e$ 条边和 $v$ 个顶点。令 $r$ 是 $G$ 的一个平面表示中区域的数量，那么有 $r&#x3D;e-v+2$ 。</p>
+<p>可以通过归纳法来证明。首先对一个图 $G$ ，将其分为若干个子图 $G_1,G_2,…G_e(G_e&#x3D;G_)$，其中 $G_1$ 就是从 $G$ 中任取一条边（包括其端点）。在 $G_1$ 中任意添加 $G$ 中一条不在 $G_1$ 中，且与 $G_1$ 中顶点关联的边，就构成了 $G_2$ ，依此类推（因为是连通图，这个步骤总是能做到的）。$G_1$ 显然是满足 $r&#x3D;e-v+2$ 的</p>
+<img src="http://150.158.191.38:5244/d/quark/picture/image-20221117141450894.png" alt="image-20221117141450894" style="zoom:67%;" />
+
+<p>假设 $G_n$ 满足，那么 $G_{n+1}$ 只有如下图两种可能 </p>
+<img src="http://150.158.191.38:5244/d/quark/picture/image-20221117141810669.png" alt="image-20221117141810669" style="zoom: 67%;" />
+
+<p>易知 $G_{n+1}$ 同样满足 $r&#x3D;e-v+2$ 。</p>
+</li>
+<li><p>推论1    若 $G$ 是一个连通平面简单图，有 $e$ 条边和 $v$ 个顶点，且满足 $v\ge3$ ，那么有 $e\le3v-6$。</p>
+<p>证明：对于一个简单图，因为不含多重边（可以产生度为 $2$ 的区域）或者环（可以产生度为 $1$ 的区域），又因为它的顶点数至少为 $3$，因此它的每个区域的度至少为 $3$ （包括那个无界的区域）。</p>
+<p>我们承认以下公式<br>$$<br>2e &#x3D; \sum_{all\ regions\ R}deg(R)<br>$$<br>因为每条边都恰好出现在区域的边界中两次（无论是在两个不同区域中各一次还是在同一个区域中两次）。</p>
+<p>设总共有 $r$ 个区域，那么可以推出 $2e\ge 3r$，又由 $r&#x3D;e-v+2$ （欧拉公式），即可知 $e\le3v-6$ 。</p>
+</li>
+<li><p>推论2    若 $G$ 是一个连通平面简单图，那么 $G$ 有一个顶点的度不超过 $5$。</p>
+<p>证明：如果 $G$ 的顶点数为 $1$ 或 $2$，那么推论2显然成立。否则，由推论1可知，$e\le3v-6$，即 $2e\le6v-12$ ，由握手定理（10.2.2）知，$2e&#x3D;\sum_\limits{v\in V}deg(v)$ ，若所有顶点的度都大于 $5$ ，那么就有 $2e\ge6$，这与 $2e\le6v-12$ 矛盾，因此至少有一个顶点的度小于等于 $5$ ，证毕。</p>
+</li>
+<li><p>推论3    若一个连通平面简单图有 $e$ 条边和 $v$ 个顶点，满足 $v\ge3$ 且没有长度为 $3$ 的回路，那么有 $e\le2v-4$。</p>
+<p>证明类似推论1，只是区域的度至少为 $4$ 。</p>
+</li>
+</ul>
+<h4 id="10-7-3-库拉托夫斯基定理（Kuratowski’s-Theorem）"><a href="#10-7-3-库拉托夫斯基定理（Kuratowski’s-Theorem）" class="headerlink" title="10.7.3 库拉托夫斯基定理（Kuratowski’s Theorem）"></a>10.7.3 库拉托夫斯基定理（Kuratowski’s Theorem）</h4><p>我们可以知道 $K_{3,3}$ 和 $K_5$ 不是平面的，显然任何包含这两种图的图也不是平面的；然而令人惊讶的是，我们可以证明所有的平面图都不包含某种由 $K_{3,3}$ 和 $K_5$ 变化而来的图。</p>
+<ul>
+<li><p>概念    简单讲，在一张图的一条边上增加一个度为 $2$ 的顶点，把边一分为二（更严谨的说法是，是先删去这条边，然后增加两条与删去边的两个端点关联且同时和另一个顶点关联的边），这不改变图的平面性，我们称这样的操作为<strong>初等重分</strong>（elementary subdivision）。如果两张图可以由同一张图初等重分而成，那么我们称它们是<strong>同胚的</strong>（homeomorphic）。</p>
+<img src="http://150.158.191.38:5244/d/quark/picture/image-20221117160353708.png" alt="image-20221117160353708" style="zoom: 67%;" />
+</li>
+<li><p>定理2（库拉托夫斯基定理）      一个图是非平面图当且仅当它的某个子图同胚于 $K_5$ 或 $K_{3,3}$ 。</p>
+<p>充分性比较显然，但必要性的证明较为复杂，不用掌握。</p>
+</li>
+</ul>
+<h3 id="10-8-图的着色（Graph-Coloring）"><a href="#10-8-图的着色（Graph-Coloring）" class="headerlink" title="10.8 图的着色（Graph Coloring）"></a>10.8 图的着色（Graph Coloring）</h3><p>对地图着色相关问题的研究产生了图论中的许多结论。考虑为一张地图着色（我们假定各个区域是连通的），习惯上要给相邻的不同区域画上不同颜色，我们需要知道尽可能少的能让相邻区域颜色不同的颜色数量。</p>
+<p>比如下面的左图需要至少4种颜色，而右图需要3种。</p>
+<img src="http://150.158.191.38:5244/d/quark/picture/image-20221117162239200.png" alt="image-20221117162239200" style="zoom: 67%;" />
+
+<p>每幅地图（map）都可以被表示成一张图（graph）。</p>
+<ul>
+<li><p>概念    我们将图中的每个区域替换成一个顶点，相邻区域对应的顶点也相邻，这样生成的图叫做地图的<strong>对偶图</strong>（dual graph）</p>
+<img src="http://150.158.191.38:5244/d/quark/picture/image-20221117162605520.png" alt="image-20221117162605520" style="zoom: 65%;" />
+</li>
+<li><p>定义1    一张简单图的<strong>着色</strong>（coloring）就是给每个顶点分配一个颜色，保证相邻顶点的颜色不同。</p>
+</li>
+<li><p>定义2    一张图的<strong>图色数</strong>（chromatic number）就是给这张图着色需要的最少的颜色数量。图 $G$ 的图色数记作 $\chi(G)$ 。</p>
+</li>
+<li><p>定理1   <strong>四色定理</strong>（The Four Color Theorem）： 一张平面图的图色数不超过 $4$ 。</p>
+<p>使用数学方法分类结合计算机穷举证明。纯数学的证明尚未有人完成，但五色定理的证明则容易很多。</p>
+</li>
+<li><p>一些特殊图的图色数</p>
+<ol>
+<li>$\chi(K_n)&#x3D;n$ ，因为任意两个顶点都相邻，因此每个顶点都需要一个颜色。</li>
+<li>$\chi(K_{m,n})&#x3D;2$ ，给其划分的两个集合分别涂上一种颜色即可。</li>
+<li>$\chi(C_n)&#x3D; \begin{cases}2&amp;n\ is\ even<br>\3&amp;n\ is\ odd<br>\end{cases}，n\ge3$，比较显然。</li>
+</ol>
+</li>
+<li><p>拓展  </p>
+<p>一种着色算法</p>
+<ol>
+<li>按照点的度数非严格递减的方式进行排序。</li>
+<li>对第一个点着色，并找到与之不相邻的、在序列中与它最近的点，着相同的颜色。</li>
+<li>依次类推，对序列中与已着色顶点不相邻的点按照此步骤依次进行下去。</li>
+<li>删去第一次着色的点，对剩余的顶点采取步骤2的方法继续着色。</li>
+<li>直到所有顶点已着色，算法结束。</li>
+</ol>
+<p>该算法并不总能得到最小点着色数目。比如二分图中最小点着色是2，但是此算法可能会得到大于2的结果。</p>
+</li>
+<li><p>拓展    记使用不超过 $n$ 种颜色为图 $G$ 着色的方法有 $P_G(n)$ 个，那么 $P_G(n)$ 是一个多项式，称为<strong>着色多项式</strong> 。使 $P_G(n)$ 不为 $0$ 的最小的 $n$ 即为 $\chi(G)$ 。</p>
+<img src="http://150.158.191.38:5244/d/quark/picture/image-20221117175008410.png" alt="image-20221117175008410" style="zoom:50%;" />
+
+<ul>
+<li>设 $G$ 是非连通无向图，其连通分量为 $G_1,G_2,…,G_m$，则 $P_G(n)&#x3D;P_{G_1}(n)P_{G_2}(n)…P_{G_m}(n)$</li>
+<li>设 $G&#x3D;(V,E)$ 是无多重边的图，设 $e\in E,e&#x3D;{a,b}$，记 $G_e$ 是 $G$ 删去 $e$ 生成的子图，$G^e$ 是将 $a$ 与 $b$ 合并（变成一个顶点）后得到的商图，那么有 $P_G(n)&#x3D;P_{G_e}(n)-P_{G^e}(n)$</li>
+</ul>
+</li>
+</ul>
+<h3 id="10-9-运输网（拓展）"><a href="#10-9-运输网（拓展）" class="headerlink" title="10.9 运输网（拓展）"></a>10.9 运输网（拓展）</h3>
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/12/03/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2022-12-04 01:53:00
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">
+                        #笔记
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%B8%8B%EF%BC%89%E6%A6%82%E8%BF%B0"><span class="toc-text">离散数学（下）概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E5%9B%BE"><span class="toc-text">10 图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-%E5%9B%BE%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">10.1 图的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-%E5%9B%BE%E7%9A%84%E6%9C%AF%E8%AF%AD%E5%92%8C%E4%B8%80%E4%BA%9B%E7%89%B9%E6%AE%8A%E7%9A%84%E5%9B%BE"><span class="toc-text">10.2 图的术语和一些特殊的图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#10-2-2-%E4%B8%80%E4%BA%9B%E6%9C%AF%E8%AF%AD"><span class="toc-text">10.2.2 一些术语</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-2-3-%E4%B8%80%E4%BA%9B%E7%89%B9%E6%AE%8A%E7%9A%84%E5%9B%BE"><span class="toc-text">10.2.3 一些特殊的图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-2-4-%E4%BA%8C%E5%88%86%E5%9B%BE%EF%BC%88Bipartite-Graphs%EF%BC%89"><span class="toc-text">10.2.4 二分图（Bipartite Graphs）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-2-5-%E5%9B%BE%E7%9A%84%E8%BD%AC%E6%8D%A2%EF%BC%88New-Graphs-from-Old%EF%BC%89"><span class="toc-text">10.2.5 图的转换（New Graphs from Old）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-3-%E5%9B%BE%E7%9A%84%E8%A1%A8%E7%A4%BA%E4%B8%8E%E5%9B%BE%E7%9A%84%E5%90%8C%E6%9E%84%EF%BC%88Representing-Graphs-and-Graph-Isomorphism%EF%BC%89"><span class="toc-text">10.3 图的表示与图的同构（Representing Graphs and Graph Isomorphism）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#10-3-1-Introduction"><span class="toc-text">10.3.1 Introduction</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-3-2-%E5%9B%BE%E7%9A%84%E8%A1%A8%E7%A4%BA%EF%BC%88Representing-Graphs%EF%BC%89"><span class="toc-text">10.3.2 图的表示（Representing Graphs）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-3-3-%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%EF%BC%88Adjacency-Matrices%EF%BC%89"><span class="toc-text">10.3.3 邻接矩阵（Adjacency Matrices）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-3-4-%E5%85%B3%E8%81%94%E7%9F%A9%E9%98%B5%EF%BC%88Incidence-Matrices"><span class="toc-text">10.3.4 关联矩阵（Incidence Matrices)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-3-5-%E5%9B%BE%E7%9A%84%E5%90%8C%E6%9E%84%EF%BC%88Isomorphism-of-Graphs%EF%BC%89"><span class="toc-text">10.3.5 图的同构（Isomorphism of Graphs）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-3-6-%E7%A1%AE%E5%AE%9A%E4%B8%A4%E5%BC%A0%E7%AE%80%E5%8D%95%E5%9B%BE%E6%98%AF%E5%90%A6%E5%90%8C%E6%9E%84"><span class="toc-text">10.3.6 确定两张简单图是否同构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-4-%E8%BF%9E%E9%80%9A%E6%80%A7%EF%BC%88Connectivity%EF%BC%89"><span class="toc-text">10.4 连通性（Connectivity）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#10-4-1-Introduction"><span class="toc-text">10.4.1 Introduction</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-4-2-%E8%B7%AF%E5%BE%84%EF%BC%88Paths%EF%BC%89"><span class="toc-text">10.4.2 路径（Paths）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-4-3-%E6%97%A0%E5%90%91%E5%9B%BE%E4%B8%AD%E7%9A%84%E8%BF%9E%E9%80%9A%EF%BC%88Connectedness%EF%BC%89"><span class="toc-text">10.4.3 无向图中的连通（Connectedness）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-4-4-%E4%B8%80%E5%BC%A0%E5%9B%BE%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9E%E9%80%9A%E7%9A%84%EF%BC%9F%EF%BC%88How-Connected-is-a-Graph-%EF%BC%89"><span class="toc-text">10.4.4 一张图是如何连通的？（How Connected is a Graph?）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-4-5-%E6%9C%89%E5%90%91%E5%9B%BE%E7%9A%84%E8%BF%9E%E9%80%9A"><span class="toc-text">10.4.5 有向图的连通</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-4-6-%E8%B7%AF%E5%BE%84%E4%B8%8E%E5%90%8C%E6%9E%84%EF%BC%88Paths-and-Isomorphism%EF%BC%89"><span class="toc-text">10.4.6 路径与同构（Paths and Isomorphism）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-4-7-%E8%B7%AF%E5%BE%84%E7%9A%84%E8%AE%A1%E6%95%B0%EF%BC%88Counting-Paths-Between-Vertices"><span class="toc-text">10.4.7 路径的计数（Counting Paths Between Vertices)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-5-%E6%AC%A7%E6%8B%89%E4%B8%8E%E5%93%88%E5%AF%86%E9%A1%BF%E8%B7%AF%E5%BE%84%EF%BC%88Euler-and-Hamilton-Paths%EF%BC%89"><span class="toc-text">10.5 欧拉与哈密顿路径（Euler and Hamilton Paths）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#10-5-1-Introduction"><span class="toc-text">10.5.1 Introduction</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-5-2-%E6%AC%A7%E6%8B%89%E8%B7%AF%E5%BE%84%E5%92%8C%E5%9B%9E%E8%B7%AF%EF%BC%88Euler-Paths-and-Circuits%EF%BC%89"><span class="toc-text">10.5.2 欧拉路径和回路（Euler Paths and Circuits）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-5-3-%E5%93%88%E5%AF%86%E9%A1%BF%E8%B7%AF%E5%BE%84%E5%92%8C%E5%9B%9E%E8%B7%AF%EF%BC%88Hamilton-Paths-and-Circuits%EF%BC%89"><span class="toc-text">10.5.3 哈密顿路径和回路（Hamilton Paths and Circuits）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-5-4-%E5%93%88%E5%AF%86%E9%A1%BF%E5%9B%9E%E8%B7%AF%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">10.5.4 哈密顿回路的应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-6-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98%EF%BC%88Shortest-Path-Problems%EF%BC%89"><span class="toc-text">10.6 最短路径问题（Shortest-Path Problems）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#10-6-1-Introduction"><span class="toc-text">10.6.1 Introduction</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-6-2-%E4%B8%80%E4%B8%AA%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E7%AE%97%E6%B3%95%EF%BC%88A-Shortest-Path-Algorithm%EF%BC%89"><span class="toc-text">10.6.2 一个最短路径算法（A Shortest-Path Algorithm）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-6-3-%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98"><span class="toc-text">10.6.3 旅行商问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-7-%E5%B9%B3%E9%9D%A2%E5%9B%BE%EF%BC%88Planar-Graphs%EF%BC%89"><span class="toc-text">10.7 平面图（Planar Graphs）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#10-7-1-Introduction"><span class="toc-text">10.7.1 Introduction</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-7-2-%E6%AC%A7%E6%8B%89%E5%85%AC%E5%BC%8F"><span class="toc-text">10.7.2 欧拉公式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-7-3-%E5%BA%93%E6%8B%89%E6%89%98%E5%A4%AB%E6%96%AF%E5%9F%BA%E5%AE%9A%E7%90%86%EF%BC%88Kuratowski%E2%80%99s-Theorem%EF%BC%89"><span class="toc-text">10.7.3 库拉托夫斯基定理（Kuratowski’s Theorem）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-8-%E5%9B%BE%E7%9A%84%E7%9D%80%E8%89%B2%EF%BC%88Graph-Coloring%EF%BC%89"><span class="toc-text">10.8 图的着色（Graph Coloring）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-9-%E8%BF%90%E8%BE%93%E7%BD%91%EF%BC%88%E6%8B%93%E5%B1%95%EF%BC%89"><span class="toc-text">10.9 运输网（拓展）</span></a></li></ol></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Sp79ecsmBQdMRaqFDZwPl0vq-gzGzoHsz',
+        appKey: 'Oin4QiNXJP9fKRqn3LowTnau',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/baoabaob/">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+  
+    <div class="footer-views">
+      
+      
+      
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        
+      
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%B8%8B%EF%BC%89 + '&url=' + http%3A%2F%2Fbaoabaob.github.io%2F2022%2F12%2F04%2F%25E7%25A6%25BB%25E6%2595%25A3%25E6%2595%25B0%25E5%25AD%25A6%25EF%25BC%2588%25E4%25B8%258B%25EF%25BC%2589%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://baoabaob.github.io/2022/12/04/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%B8%8B%EF%BC%89/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>
