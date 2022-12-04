@@ -182,10 +182,8 @@
 <li><p>定义2    <strong>neighborhood</strong>（邻居）：</p>
 <p>对于图$G&#x3D;(V,E)$，</p>
 <ol>
-<li><p>对一个顶点 $v$，它的邻居 $N(v) $&#x3D; {v的所有相邻顶点}</p>
-</li>
-<li><p>对一个集合 $A$，$A$ 是 $V$ 的子集，则$N(A) &#x3D; \bigcup_{v\in A}N(v)$，即A中所有顶点的邻居的并集</p>
-</li>
+<li>对一个顶点 $v$，它的邻居 $N(v) $&#x3D; {v的所有相邻顶点}</li>
+<li>对一个集合 $A$，$A$ 是 $V$ 的子集，则$N(A) &#x3D; \bigcup_{v\in A}N(v)$，即A中所有顶点的邻居的并集</li>
 </ol>
 <p>                       </p>
 </li>
@@ -301,7 +299,7 @@
 </li>
 </ul>
 <h4 id="10-3-4-关联矩阵（Incidence-Matrices"><a href="#10-3-4-关联矩阵（Incidence-Matrices" class="headerlink" title="10.3.4 关联矩阵（Incidence Matrices)"></a>10.3.4 关联矩阵（Incidence Matrices)</h4><ul>
-<li><p>概念：设无向图 $G&#x3D;(V,E)$ ，它有 $n$ 个顶点 $v_1,v_2,…,v_n$ 和 $m$ 条边 $e_1,e_2,…e_m$，则其<strong>incidence matrices</strong>（关联矩阵）为 $[m_{ij}]$ ，满足        $                                  m_{ij}&#x3D;\begin{cases}<br>1&amp;当\space e_j\space 与\space v_i\space 相关联 \<br>0&amp;否则<br>\end{cases}$</p>
+<li><p>概念：设无向图 $G&#x3D;(V,E)$ ，它有 $n$ 个顶点 $v_1,v_2,…,v_n$ 和 $m$ 条边 $e_1,e_2,…e_m$，则其<strong>incidence matrices</strong>（关联矩阵）为 $[m_{ij}]$ ，满足<br>$$<br>m_{ij}&#x3D;\begin{cases}<br> 1&amp;\text{ if }\ e_j与v_i关联 \<br> 0&amp;\text{ otherwise }  \end{cases}<br>$$</p>
 <img title="" src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/2022-11-06-14-51-25-image.png" alt="" data-align="center" width="535">
 
 <p>关联矩阵可以用来表示带环（loop）的多重图，值得注意的是用来表示环的一列有且仅有一个元素为1（因为只有一个顶点与环关联），但通常情况下一列有两个元素为1，因为通常一条边与两个顶点相关</p>
@@ -386,13 +384,14 @@
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="http://150.158.191.38:5244/d/quark/picture/20221204033934.png" alt="" data-align="center" width="381">
+    src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/202212041545608.png" alt="" data-align="center" width="381">
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
     padding: 2px;">左图是强连通的，右图是弱连通的</div>
 </center>
+
 <img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/image-20221110221521789.png" alt="image-20221110221521789" style="zoom:80%;" />
 </li>
 <li><p>概念：一张有向图的极大强连通子图 (不是任何强连通子图的真子图) 称为它的<strong>强连通分量</strong>（strongly connected components）或简称为<strong>强分量</strong>（strong components），</p>
@@ -452,7 +451,7 @@
 </li>
 </ol>
 </li>
-<li><p>当2不能进行时算法停止。</p>
+<li><p>当 ii 不能进行时算法停止。</p>
 </li>
 </ol>
 <p>可以证明，当算法停止时，得到的简单回路 $P_m&#x3D;v_0e_1v_1…e_mv_m(v_m&#x3D;v_0)$ 是 $G$ 中一条欧拉回路。</p>
@@ -534,11 +533,11 @@
 <li><p>定理1    <strong>迪科斯彻算法</strong>（Dijkstra’s algorithm）可以找到一个连通简单无向正权图中两个顶点间的最短路径。</p>
 <p>简述：</p>
 <ol>
-<li>将起点的权初始化为0，所有其它顶点初始化为 $\infin$ 。</li>
+<li>将起点的权初始化为0，所有其它顶点初始化为 $\infty$ 。</li>
 <li>找到图中权最小的顶点 $v$ ，如果这个顶点就是终点，则顶点记录的路径就是最短路径。终止。</li>
 <li>考虑所有 $v$ 的相邻顶点的权，如果大于 $v$ 的权+两顶点之间的边的权，那么把相邻顶点的权更新为后者，并且在这个相邻顶点记录的路径的结尾加上 $v$。</li>
 <li>从图中删去 $v$ ，意思是之后找顶点时不再考虑 $v$ 。</li>
-<li>回到步骤2。</li>
+<li>回到步骤 ii。</li>
 </ol>
 <p>可以参考下图，起点为 $a$，终点为 $z$ 。</p>
 <p><img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/image-20221109172919995.png" alt="image-20221109172919995"></p>
@@ -551,7 +550,7 @@
 <li><p>定义（拓展）    <strong>Distance Matrix</strong>（距离矩阵）：设 $G$ 是一张带有 $n$ 个顶点的图，它的距离矩阵是 $D&#x3D;(d_{ij})_{n\times n}$ ，它满足如下性质：</p>
 <ul>
 <li>$d_{ij}$ 表示边 $(v_i,v_j)$ 的权值</li>
-<li>如果 $v_i$ 和 $v_j$ 之间没有边，那么 $d_{ij}&#x3D;\infin$ </li>
+<li>如果 $v_i$ 和 $v_j$ 之间没有边，那么 $d_{ij}&#x3D;\infty$ </li>
 <li>令 $D^2&#x3D;D* D&#x3D;(d_{ij}^2)_{n\times n}$</li>
 <li>$d_{ij}^2&#x3D;min{d_{i1}+d_{1j},d_{i2}+d_{2j},…,d_{in}+d_{nj}}$，实际上 $d_{ij}^2$ 就是从 $v_i$ 到 $v_j$ 的最短的两条边的路径</li>
 <li>同样地，令 $D^k&#x3D;D^{k-1}*D&#x3D;(d_{ij}^k)<em>{n\times n}$，实际上 $d</em>{ij}^k$ 就是从 $v_i$ 到 $v_j$ 的最短的 $k$ 条边的路径</li>
@@ -652,7 +651,7 @@
 <ol>
 <li>$\chi(K_n)&#x3D;n$ ，因为任意两个顶点都相邻，因此每个顶点都需要一个颜色。</li>
 <li>$\chi(K_{m,n})&#x3D;2$ ，给其划分的两个集合分别涂上一种颜色即可。</li>
-<li>$\chi(C_n)&#x3D; \begin{cases}2&amp;n\ is\ even<br>\3&amp;n\ is\ odd<br>\end{cases}，n\ge3$，比较显然。</li>
+<li>$\chi(C_n)&#x3D; \begin{cases}2&amp;\text{if}\ n\ is\ even \3&amp;\text{if}\ n\ is\ odd \end{cases},n\ge3$，比较显然。</li>
 </ol>
 </li>
 <li><p>拓展  </p>
