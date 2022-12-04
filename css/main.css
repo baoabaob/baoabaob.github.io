@@ -2147,41 +2147,41 @@ a:hover {
   margin-left: 30px;
 }
 .v[data-class="v"] .vwrap .vheader .vinput:focus {
-  border-bottom-color: #000 !important;
+  border-bottom-color: #666 !important;
 }
 .v[data-class="v"] .vbtn:active,
 .v[data-class="v"] .vbtn:hover {
-  border-color: #000 !important;
+  border-color: #666 !important;
 }
 .v[data-class="v"] .vcards .vcard .vh .vmeta .vat {
-  color: #000 !important;
+  color: #666 !important;
 }
 .v[data-class="v"] a {
-  color: #000 !important;
+  color: #666 !important;
 }
 .fancybox-progress {
-  background: #000 !important;
+  background: #666 !important;
 }
 .markdown-body code {
-  color: #000;
+  color: #666;
 }
 .markdown-body a:hover {
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid #666;
 }
 .markdown-body blockquote {
-  border-color: #000;
+  border-color: #666;
 }
 .toc-link:hover::after {
-  background-color: #000;
+  background-color: #666;
 }
 .toc-link.active::after {
-  background-color: #000;
+  background-color: #666;
 }
 .navbar ul li a:hover::after {
-  background-color: #000;
+  background-color: #666;
 }
 .navbar ul li.active a::after {
-  background-color: #000;
+  background-color: #666;
 }
 .markdown-body h1 .headerlink::before,
 .markdown-body h2 .headerlink::before,
@@ -2189,5 +2189,5 @@ a:hover {
 .markdown-body h4 .headerlink::before,
 .markdown-body h5 .headerlink::before,
 .markdown-body h6 .headerlink::before {
-  color: #000;
+  color: #666;
 }
