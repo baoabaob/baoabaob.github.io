@@ -181,7 +181,8 @@
 <h3 id="图的术语和一些特殊的图">10.2 图的术语和一些特殊的图</h3>
 <h4 id="一些术语">10.2.2 一些术语</h4>
 <ul>
-<li><p>定义1    <strong>adjacent</strong>（相邻）：一条边（edge）上的两个顶点(vertex，复数为vertices)是相邻的；这条边与顶点<strong>关联</strong>（incident）</p></li>
+<li><p>定义1
+<strong>adjacent</strong>（相邻）：一条边（edge）上的两个顶点(vertex，复数为vertices)是相邻的；这条边与顶点<strong>关联</strong>（incident）</p></li>
 <li><p>定义2 <strong>neighborhood</strong>（邻居）：</p>
 <p>对于图<span class="math inline">\(G=(V,E)\)</span>，</p>
 <ol type="1">
@@ -191,7 +192,7 @@
 class="math inline">\(A\)</span> 是 <span
 class="math inline">\(V\)</span> 的子集，则<span
 class="math inline">\(N(A) = \bigcup_{v\in
-A}N(v)\)</span>，即A中所有顶点的邻居的并集                       </li>
+A}N(v)\)</span>，即A中所有顶点的邻居的并集 </li>
 </ol></li>
 <li><p>定义3 <strong>degree</strong>（度）：对无向图的一个顶点 <span
 class="math inline">\(v\)</span>，它的度 <span
@@ -427,7 +428,7 @@ m_{ij}=\begin{cases}
 <h4 id="图的同构isomorphism-of-graphs">10.3.5 图的同构（Isomorphism of
 Graphs）</h4>
 <ul>
-<li><p>定义1    对于两张简单图 <span
+<li><p>定义1 对于两张简单图 <span
 class="math inline">\(G_1=(V_1,E_1)\)</span> 和 <span
 class="math inline">\(G_2=(V_2,E_2)\)</span> ，如果存在一个 <span
 class="math inline">\(V_1\to V_2\)</span>一一对应的（双射的）函数 <span
@@ -455,7 +456,8 @@ class="math inline">\(f(b)\)</span></p></li>
 </ul>
 <h4 id="确定两张简单图是否同构">10.3.6 确定两张简单图是否同构</h4>
 <ul>
-<li><p>概念    确定两张图是同构的比较困难，因为我们需要确定所有的一一对应的顶点都保留了边的关系，但是确定两张图是不同构的则相对简单。一些属性在图的同构中会被保留，我们称其为<strong>graph
+<li><p>概念
+确定两张图是同构的比较困难，因为我们需要确定所有的一一对应的顶点都保留了边的关系，但是确定两张图是不同构的则相对简单。一些属性在图的同构中会被保留，我们称其为<strong>graph
 invariant</strong>（图形不变量），比如顶点数、边数和后续提到的连通性、回路存在性等，如果这些量发生改变，我们很容易知道两张图是不同构的。</p>
 <p>每个顶点对应的度就是一个图形不变量，如果两张图的顶点的度不能形成一一对应关系，那么可以判断它们不同构。</p>
 <p>可以通过画邻接矩阵来判断两张图是否同构，如果一个矩阵能够通过行或列的交换变成另一个矩阵，那么就可以说明它们是同构的，通过比较其行列序号也可以找到对应的
@@ -612,7 +614,7 @@ Isomorphism）</h4>
 路径的计数（Counting Paths Between Vertices)</h4>
 <p>一个图中两个顶点间的路径数量可以用它的邻接矩阵来确定</p>
 <ul>
-<li><p>定理2    一张图（有向边或无向边均可，允许多重边和环路）的以<span
+<li><p>定理2 一张图（有向边或无向边均可，允许多重边和环路）的以<span
 class="math inline">\(v_1,v_2,...,v_n\)</span>
 的顺序排列的邻接矩阵为A，则从 <span class="math inline">\(v_i\)</span>
 到 <span class="math inline">\(v_j\)</span> 的长为 <span
@@ -649,7 +651,7 @@ circuit），两者看起来很相似，但是第一个问题可以通过相对�
 <h4 id="欧拉路径和回路euler-paths-and-circuits">10.5.2
 欧拉路径和回路（Euler Paths and Circuits）</h4>
 <ul>
-<li><p>定义1    <strong>Euler circuit</strong>（欧拉回路）：图 <span
+<li><p>定义1 <strong>Euler circuit</strong>（欧拉回路）：图 <span
 class="math inline">\(G\)</span>
 中的一个<strong>欧拉回路</strong>就是一个包含了 <span
 class="math inline">\(G\)</span> 的每条边的简单回路。<span
