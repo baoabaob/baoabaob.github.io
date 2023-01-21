@@ -11,7 +11,7 @@
   
   <title>
     
-      归档 
+      最少与非门问题 
       
       
       |
@@ -108,84 +108,160 @@
 
 
       <div class="flex-container">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
 
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2023</span>
-          </h2>
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">最少与非门问题</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2023-01-22 00:44:00
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/" title="数字逻辑">
+                    #数字逻辑
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <p>源于今天玩<a
+target="_blank" rel="noopener" href="https://nandgame.com/">NandGame</a>时产生的一个小问题：怎么使用最少的与非门来构造一个异或门？</p>
+<p>单纯采用摩根定律可以把异或门的逻辑式化简成 <span
+class="math inline">\(Y=\overline{\overline{A\overline{B}}·\overline{\overline{A}B}}\)</span>
+，此时需要5个异或门。</p>
+<p>然而对上式稍作改动，变成 <span
+class="math inline">\(Y=\overline{\overline{A\overline{AB}}·\overline{B\overline{AB}}}\)</span>
+，此时只需要4个异或门。</p>
+<p>那么是否有什么通用的方法求逻辑表达式的最少与非门形式呢？</p>
+<p>网上相关的资料寥寥无几，只找到了一篇野生的文章，<a
+target="_blank" rel="noopener" href="https://wenku.baidu.com/view/eb7a8c7f1711cc7931b71677.html?_wkts_=1674322355188">《原变量下用最少与非门实现逻辑函数》</a>，但没有仔细阅读（格式有些糟糕），在各大学术平台也搜索不到相关内容，google的某个相关问题中更有人称这是一个NP难问题，真伪难辨。。。不过考虑一下这个问题本身的价值，也许并不是很重要。参考上面异或门的例子就可以知道，一味追求”使用最少的与非门“的代价是对高层次抽象的破坏，这增加了电路设计的复杂程度；即使存在一种通用的方法，考虑到现在高度抽象和数字化的电路设计方式，普通人去学习的意义也不大。</p>
+<p>这个问题暂时留个尾巴，之后有机会再深入研究一下。</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/12/05/asm%E5%9B%BE%E4%B8%AD%E7%9A%84%E6%9D%A1%E4%BB%B6%E8%BE%93%E5%87%BA%E6%A1%86%E5%92%8C%E7%8A%B6%E6%80%81%E6%A1%86/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2023-01-22 00:44:00
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/" title="数字逻辑">
+                        #数字逻辑
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
       
-      <div class="post-item" title="最少与非门问题">
-        <div class="time-m-d">01-22</div>
-        <div class="title">
-          <a href="/2023/01/22/%E6%9C%80%E5%B0%91%E4%B8%8E%E9%9D%9E%E9%97%A8%E9%97%AE%E9%A2%98/">
-            <span>最少与非门问题</span>
-          </a>
-        </div>
-      </div>
+    </div>
     
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2022</span>
-          </h2>
-        </div>
-      
-      <div class="post-item" title="asm图中的条件输出框和状态框">
-        <div class="time-m-d">12-05</div>
-        <div class="title">
-          <a href="/2022/12/05/asm%E5%9B%BE%E4%B8%AD%E7%9A%84%E6%9D%A1%E4%BB%B6%E8%BE%93%E5%87%BA%E6%A1%86%E5%92%8C%E7%8A%B6%E6%80%81%E6%A1%86/">
-            <span>asm图中的条件输出框和状态框</span>
-          </a>
-        </div>
-      </div>
+
     
-      <div class="post-item" title="关于markdown">
-        <div class="time-m-d">12-04</div>
-        <div class="title">
-          <a href="/2022/12/04/%E5%85%B3%E4%BA%8Emarkdown/">
-            <span>关于markdown</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="离散数学（下）">
-        <div class="time-m-d">12-04</div>
-        <div class="title">
-          <a href="/2022/12/04/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%B8%8B%EF%BC%89/">
-            <span>离散数学（下）</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="关于这个博客">
-        <div class="time-m-d">12-03</div>
-        <div class="title">
-          <a href="/2022/12/03/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2/">
-            <span>关于这个博客</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="helloworld">
-        <div class="time-m-d">12-03</div>
-        <div class="title">
-          <a href="/2022/12/03/helloworld/">
-            <span>helloworld</span>
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src="/plugins/valine.min.js" onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Sp79ecsmBQdMRaqFDZwPl0vq-gzGzoHsz',
+        appKey: 'Oin4QiNXJP9fKRqn3LowTnau',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-</div>
+
 
         
 <div class="footer">
@@ -449,6 +525,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E6%9C%80%E5%B0%91%E4%B8%8E%E9%9D%9E%E9%97%A8%E9%97%AE%E9%A2%98 + '&url=' + http%3A%2F%2Fbaoabaob.github.io%2F2023%2F01%2F22%2F%25E6%259C%2580%25E5%25B0%2591%25E4%25B8%258E%25E9%259D%259E%25E9%2597%25A8%25E9%2597%25AE%25E9%25A2%2598%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://baoabaob.github.io/2023/01/22/%E6%9C%80%E5%B0%91%E4%B8%8E%E9%9D%9E%E9%97%A8%E9%97%AE%E9%A2%98/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
