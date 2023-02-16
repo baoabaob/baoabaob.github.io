@@ -186,8 +186,8 @@
 <li><p>定义2 <strong>neighborhood</strong>（邻居）：</p>
 <p>对于图<span class="math inline">\(G=(V,E)\)</span>，</p>
 <ol type="1">
-<li>对一个顶点 <span class="math inline">\(v\)</span>，它的邻居 $N(v) $=
-{v的所有相邻顶点}</li>
+<li>对一个顶点 <span class="math inline">\(v\)</span>，它的邻居 $N(v)
+<span class="math inline">\(= {\)</span>v的所有相邻顶点$}</li>
 <li>对一个集合 <span class="math inline">\(A\)</span>，<span
 class="math inline">\(A\)</span> 是 <span
 class="math inline">\(V\)</span> 的子集，则<span
@@ -510,7 +510,7 @@ class="math inline">\(v\)</span> 的长为 <span
 class="math inline">\(n\)</span> 的路径是图中的一系列与 <span
 class="math inline">\((x_0,x_1),(x_1,x_2),...,(x_{n-1},x_n)\)</span>
 关联的边 <span class="math inline">\(e_1,e_2,...,e_n\)</span>，其中
-<span class="math inline">\(x_0=u,x_1=v\)</span>
+<span class="math inline">\(x_0=u,x_n=v\)</span>
 ，满足前一条边的终点是后一条边的起点。如果没有多重边，路径可以记作<span
 class="math inline">\(x_0,x_1,x_2,...,x_{n-1},x_n\)</span>，其余定义与无向图类似。</p></li>
 </ul>
@@ -761,7 +761,7 @@ circuit），简称H回路。存在哈密顿回路的图被称为哈密顿图。
 <p>哈密顿回路还可以被定义成一个首尾相接的哈密顿路径。</p></li>
 <li><p>定理（拓展）：<span class="math inline">\(K_n(n\ge3)\)</span>
 一定有哈密顿回路。</p>
-<p>实际上，更强地，<span class="math inline">\(C_n(n\ge3)\)</span>
+<p>实际上，<span class="math inline">\(C_n(n\ge3)\)</span>
 就一定有哈密顿回路。</p>
 <blockquote>
 <p>（10.2.3）<span class="math inline">\(K_n\)</span> 即 <span
@@ -772,7 +772,7 @@ class="math inline">\(n\)</span> 个顶点的环。</p>
 <li><p>拓展：哈密顿回路存在的条件</p>
 <p>与欧拉回路不同，哈密顿回路的存在并没有一个简单的充要条件（尽管它们很相似）。不过，许多理论给出了哈密顿回路存在的充分条件，此外，我们可以根据图的某些属性确定一张图没有哈密顿回路。</p>
 <p>比如，一张图中如果存在一个度为1的顶点，那么它一定没有哈密顿回路（显然它根本无法构成回路）。</p>
-<p>一个哈密顿回路中的每个顶点都恰与回路中的两条边相关联（恰好一进一出）。</p>
+<p>一个<strong>哈密顿回路中</strong>的每个顶点都恰与回路中的两条边相关联（恰好一进一出）。</p>
 <p>进一步地，一张图中如果有一个顶点的度为2，那么它的两条相关边必然都在哈密顿回路中（如果存在）。</p>
 <p>又或者，如果你正在构造一条哈密顿回路，当它经过了其中某个顶点，那么除了它经过的那两条边，其余与这个顶点关联的边都可以不再考虑。</p>
 <p>此外，一条哈密顿回路的内部不会包含一个更小的回路。否则删去小回路，由于连通性，小回路内部必然有一个顶点与外部有边关联，而这个顶点又一定和小回路内部两条边关联，因此它的关联边数大于2。这在哈密顿回路中是不可能的。</p></li>
@@ -981,7 +981,7 @@ class="math display">\[
 </ul>
 <h3 id="平面图planar-graphs">10.7 平面图（Planar Graphs）</h3>
 <h4 id="introduction-4">10.7.1 Introduction</h4>
-<p>考虑这样一个问题，每个房子需要连接三个电器，现在一共有三个房子，有没有一种画线的方法能不能保证线之间不相交呢？</p>
+<p>考虑这样一个问题，每个房子需要连接三个电器，现在一共有三个房子，有没有一种画线的方法能保证线之间不相交呢？</p>
 <p><img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/image-20221109183740568.png" alt="image-20221109183740568" style="zoom: 67%;" /></p>
 <p>这个问题实际上可以被转换成：我们能不能在平面中，用两两不相交的边绘制出完全二分图<span
 class="math inline">\(K_{3,3}\)</span>呢？</p>
