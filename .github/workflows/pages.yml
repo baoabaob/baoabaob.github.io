@@ -32,7 +32,7 @@ jobs:
       # Setup and Run Hexo to build the Static Site
       - name: Hexo generate
         run: |
-          hexo clean && hexo g
+          npx hexo clean && npx hexo g
       - name: Build
         run: npm run build
       - name: Deploy 🚀
