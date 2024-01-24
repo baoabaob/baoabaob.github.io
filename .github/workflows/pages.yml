@@ -20,10 +20,6 @@ jobs:
           cd /tmp
           wget -c https://github.com/jgm/pandoc/releases/download/3.1.11.1/pandoc-3.1.11.1-1-amd64.deb
           sudo dpkg -i pandoc-3.1.11.1-1-amd64.deb
-      # Setup and Run Hexo to build the Static Site
-      - name: Hexo
-        run: |
-          npx hexo clean && npx hexo g
       - name: Cache NPM dependencies
         uses: actions/cache@v3
         with:
@@ -33,6 +29,10 @@ jobs:
             ${{ runner.OS }}-npm-cache
       - name: Install Dependencies
         run: npm ci
+      # Setup and Run Hexo to build the Static Site
+      - name: Hexo generate
+        run: |
+          hexo clean && hexo g
       - name: Build
         run: npm run build
       - name: Deploy 🚀
