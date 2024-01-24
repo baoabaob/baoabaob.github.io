@@ -91,7 +91,7 @@ navbar:
     key: archives
   -
     name: Categories
-    enable: false
+    enable: true
     path: /categories/
     key: categories
   -
