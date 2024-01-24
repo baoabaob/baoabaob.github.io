@@ -9,7 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.0.0
+      - name: Checkout
+        uses: actions/checkout@v3.0.0
+        with:
+          submodules: 'true'
       - name: Use Node.js 18.x
         uses: actions/setup-node@v3
         with:
@@ -34,4 +37,4 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: ./public # The folder the action should deploy.
+          folder: public # The folder the action should deploy.
