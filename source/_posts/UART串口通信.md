@@ -71,7 +71,7 @@ HAL\_UARTEx\_RxEventCallback(UART\_HandleTypeDef \*huart, uint16\_t Size)
 
 把USART1设置成异步收发模式。
 
-![https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/f1b00df7b9d13942426b0c661943e957.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/f1b00df7b9d13942426b0c661943e957.png)
+![](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/f1b00df7b9d13942426b0c661943e957.png)
 
 由于需要使用DMA接收，开启外围到内存的DMA流。
 
@@ -89,7 +89,7 @@ HAL\_UARTEx\_RxEventCallback(UART\_HandleTypeDef \*huart, uint16\_t Size)
 
 在主函数中调用DMA空闲接收函数启动接收。这里我会在中断回调函数重新启动接收，因此无需将其写在while循环中。
 
-![https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/a23446f54a227caf841c9aefea8e7f1c.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/a23446f54a227caf841c9aefea8e7f1c.png)
+![alt=https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/a23446f54a227caf841c9aefea8e7f1c.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/a23446f54a227caf841c9aefea8e7f1c.png)
 
 **重载fputc，把printf重定向到串口输出。（有用的trick）**
 
