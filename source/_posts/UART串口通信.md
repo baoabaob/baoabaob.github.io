@@ -85,7 +85,7 @@ HAL\_UARTEx\_RxEventCallback(UART\_HandleTypeDef \*huart, uint16\_t Size)
 
 声明接收数组。
 
-![https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/d41fa8c9502cd4c54b0801f5dc1a7642.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/d41fa8c9502cd4c54b0801f5dc1a7642.png)![](file:///C:\Users\翻白肚~1\AppData\Local\Temp\ksohtml24360\wps5.jpg)
+![https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/d41fa8c9502cd4c54b0801f5dc1a7642.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/d41fa8c9502cd4c54b0801f5dc1a7642.png)
 
 在主函数中调用DMA空闲接收函数启动接收。这里我会在中断回调函数重新启动接收，因此无需将其写在while循环中。
 
@@ -100,3 +100,4 @@ HAL\_UARTEx\_RxEventCallback(UART\_HandleTypeDef \*huart, uint16\_t Size)
 ![https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/1ac7c7d6b70baa7f213ecfe8a601a1f2.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/1ac7c7d6b70baa7f213ecfe8a601a1f2.png)
 
 ![](file:///C:\Users\翻白肚~1\AppData\Local\Temp\ksohtml24360\wps4.jpg)
+
