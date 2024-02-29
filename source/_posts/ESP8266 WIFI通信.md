@@ -35,36 +35,36 @@ STA+AP 模式：两种模式的共存模式，即可以通过互联网控制可�
 
 在STM32cubeMX中配置相关引脚。
 
-![https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/ef0cdf8727cfaafe1445242d14cb9317.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/ef0cdf8727cfaafe1445242d14cb9317.png)![](file:///C:\Users\翻白肚~1\AppData\Local\Temp\ksohtml24360\wps9.jpg)
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/ef0cdf8727cfaafe1445242d14cb9317.png" style="zoom: 80%;" />
 
 本次实验用到ESP-12F 模块所占用的两个USART串口。
 
 启用DMA接收以及USART全局中断。
 
-![https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/a9d22159e9d78a05daf100b3be788855.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/a9d22159e9d78a05daf100b3be788855.png)
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/a9d22159e9d78a05daf100b3be788855.png" style="zoom: 80%;" />
 
-![https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/04f47b8459c861b1a0bd4513de46697a.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/04f47b8459c861b1a0bd4513de46697a.png)
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/04f47b8459c861b1a0bd4513de46697a.png" style="zoom:80%;" />
 
 编写wifi.c，设计wifi初始化函数，原理即逐条使用AT指令配置通信模块。
 [*附官方指令集文档*]([https://](https://espressif-docs.readthedocs-hosted.com/projects/esp-at/zh-cn/release-v2.2.0.0_esp8266/AT_Command_Set/Wi-Fi_AT_Commands.html))
 
-![https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/ec80e7918c7d8de81a76227cd55af3e0.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/ec80e7918c7d8de81a76227cd55af3e0.png)
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/ec80e7918c7d8de81a76227cd55af3e0.png" style="zoom:80%;" />
 
 这里的Send_command函数基于HAL_UART_Transmit函数稍作改动。
 
 此外提供了Send_message函数，用于发送指令让模块向客户端发送消息。
 
-![https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/d787d33b42fb899ae8fb354acc316796.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/d787d33b42fb899ae8fb354acc316796.png)
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/d787d33b42fb899ae8fb354acc316796.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/d787d33b42fb899ae8fb354acc316796.png" style="zoom:67%;" />
 
 这里需要注意每条指令后的“\r\n”都是必要的，这是模块判断一条指令结束的依据。
 
 main函数中调用set_wifi对8266模块进行初始化。
 
-![https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/f4144a2d919ed2428dd8e56df8c10742.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/f4144a2d919ed2428dd8e56df8c10742.png)
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/f4144a2d919ed2428dd8e56df8c10742.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/f4144a2d919ed2428dd8e56df8c10742.png" style="zoom:67%;" />
 
 这里需要注意，通过SetPriority指令在主循环之前、串口初始化之后重新配置了两种中断的优先级。
 
-![https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/da99daf0bfc5307af192e1c645875105.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/da99daf0bfc5307af192e1c645875105.png)
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/da99daf0bfc5307af192e1c645875105.png" style="zoom: 80%;" />
 
 可以看到初始化时SysTick中断的抢占优先级是0（数字越小优先级越高），而我们必须把USART中断和DMA中断的优先级设置的更高，这是因为我们在DMA空闲中断回调中使用了Send_message函数，其内部调用了HAL_Delay函数，而这个函数的实现是依赖于SysTick中断的，其具体方法是进入一个计数器判断死循环，等待每个Tick都会产生一次的中断，把计数器减一，直到计数器为0退出循环。如果SysTick中断的优先级低于USART中断，就会产生问题：发生空闲中断后程序进入USART中断回调函数，此时在中断内部遇到HAL_Delay后进入计数循环，但是由于SysTick中断的优先级较低，在中断内部无法进入SysTick中断（也就没法让计时衰减），导致计数器死循环无法退出。
 
@@ -80,4 +80,4 @@ main函数中调用set_wifi对8266模块进行初始化。
 
 连接后收到hello，之后回响发送过去的消息。
 
-![https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/71aeb113dcaf799fb2164590c4fdac0c.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/71aeb113dcaf799fb2164590c4fdac0c.png)
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/71aeb113dcaf799fb2164590c4fdac0c.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/71aeb113dcaf799fb2164590c4fdac0c.png" style="zoom:67%;" />
