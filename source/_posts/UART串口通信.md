@@ -71,33 +71,33 @@ HAL\_UARTEx\_RxEventCallback(UART\_HandleTypeDef \*huart, uint16\_t Size)
 
 把USART1设置成异步收发模式。
 
-![](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/f1b00df7b9d13942426b0c661943e957.png)
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/f1b00df7b9d13942426b0c661943e957.png" style="zoom:67%;" />
 
 由于需要使用DMA接收，开启外围到内存的DMA流。
 
-![https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/812d87d772881b7ff8aa58cd78c8d9d6.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/812d87d772881b7ff8aa58cd78c8d9d6.png)
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/812d87d772881b7ff8aa58cd78c8d9d6.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/812d87d772881b7ff8aa58cd78c8d9d6.png" style="zoom:67%;" />
 
 开启全局中断。
 
-![https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/7b46922fa3c06c5510899ca474020c59.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/7b46922fa3c06c5510899ca474020c59.png)
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/7b46922fa3c06c5510899ca474020c59.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/7b46922fa3c06c5510899ca474020c59.png" style="zoom:67%;" />
 
 生成代码。
 
 声明接收数组。
 
-![https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/d41fa8c9502cd4c54b0801f5dc1a7642.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/d41fa8c9502cd4c54b0801f5dc1a7642.png)
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/d41fa8c9502cd4c54b0801f5dc1a7642.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/d41fa8c9502cd4c54b0801f5dc1a7642.png" style="zoom:67%;" />
 
 在主函数中调用DMA空闲接收函数启动接收。这里我会在中断回调函数重新启动接收，因此无需将其写在while循环中。
 
-![alt=https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/a23446f54a227caf841c9aefea8e7f1c.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/a23446f54a227caf841c9aefea8e7f1c.png)
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/a23446f54a227caf841c9aefea8e7f1c.png" alt="alt=https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/a23446f54a227caf841c9aefea8e7f1c.png" style="zoom:67%;" />
 
 **重载fputc，把printf重定向到串口输出。（有用的trick）**
 
-![https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/cd0e4e183a5086993e36c27d3133b1b7.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/cd0e4e183a5086993e36c27d3133b1b7.png)
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/cd0e4e183a5086993e36c27d3133b1b7.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/cd0e4e183a5086993e36c27d3133b1b7.png" style="zoom:67%;" />
 
 重载回调函数。由于可以接收不定长数据，这里代码是从实验中截取，大概是做一个串口CLI。逻辑很简洁，直接匹配字符串前缀然后进入对应命令的处理函数即可。处理完数据后清空接收缓冲区并重新启动DMA接收，等待接收下一次数据。
 
-![https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/1ac7c7d6b70baa7f213ecfe8a601a1f2.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/1ac7c7d6b70baa7f213ecfe8a601a1f2.png)
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/1ac7c7d6b70baa7f213ecfe8a601a1f2.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/1ac7c7d6b70baa7f213ecfe8a601a1f2.png" style="zoom:67%;" />
 
-![](file:///C:\Users\翻白肚~1\AppData\Local\Temp\ksohtml24360\wps4.jpg)
+<img src="file:///C:\Users\翻白肚~1\AppData\Local\Temp\ksohtml24360\wps4.jpg" style="zoom:67%;" />
 

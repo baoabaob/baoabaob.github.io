@@ -20,7 +20,7 @@ updated: '2024-02-29T11:25:18.317+08:00'
   即每秒处理请求数，最大吞吐能力。
   QPS = 并发请求数/平均响应时间，QPS到达系统上限后，响应时间随并发数增加快速增长。
 
-  ![https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/8f8499b52ad04e9a8905078e82a455da.png](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/8f8499b52ad04e9a8905078e82a455da.png)
+  ![](https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/8f8499b52ad04e9a8905078e82a455da.png)
 
   如果流量平稳：日均QPS= 每日PV / (3600 24)
   一般情况下，假定每天80%的访问集中在20%的时间，则峰值QPS = (每日PV * 80%)/(360024*20%)
