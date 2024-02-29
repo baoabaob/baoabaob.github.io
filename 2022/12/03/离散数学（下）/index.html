@@ -168,8 +168,14 @@
                 <i class="iconfont icon-tags mr-10" title="标签"></i>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" title="笔记 离散数学">
-                    #笔记 离散数学
+                  <a href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">
+                    #笔记
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" title="离散数学">
+                    #离散数学
                   </a>
                 </span>
                 
@@ -196,7 +202,7 @@
 class="math inline">\(A\)</span> 是 <span
 class="math inline">\(V\)</span> 的子集，则<span
 class="math inline">\(N(A) = \bigcup_{v\in
-A}N(v)\)</span>，即A中所有顶点的邻居的并集 </li>
+A}N(v)\)</span>，即A中所有顶点的邻居的并集</li>
 </ol></li>
 <li><p>定义3 <strong>degree</strong>（度）：对无向图的一个顶点 <span
 class="math inline">\(v\)</span>，它的度 <span
@@ -205,8 +211,8 @@ class="math inline">\(deg(v) =\)</span> 与其关联的边数。<strong>特别�
 上的环（loop）一个顶俩</strong>（计两次数，可以理解为一条边的两头都是
 <span class="math inline">\(v\)</span>，关联两次）。</p>
 <ul>
-<li><p><strong>isolated</strong>（孤立的）：指度为0的顶点</p></li>
-<li><p><strong>pendant</strong>（悬挂的）：指度为1的顶点</p></li>
+<li><strong>isolated</strong>（孤立的）：指度为0的顶点</li>
+<li><strong>pendant</strong>（悬挂的）：指度为1的顶点</li>
 </ul></li>
 <li><p>定理1 <strong>handshaking theorem</strong>（握手定理）：<span
 class="math inline">\(m\)</span> 条边的无向图，有 <span
@@ -230,17 +236,17 @@ class="math inline">\(v\)</span> 称为<strong>终点</strong>(terminal
 vertex)。环具有相同的起点和终点。</p></li>
 <li><p>定义5</p>
 <ul>
-<li><p>一个顶点 <span class="math inline">\(v\)</span>
+<li>一个顶点 <span class="math inline">\(v\)</span>
 的<strong>入度</strong>(in-degree)，记作 <span
 class="math inline">\(deg^-(v)\)</span>，就是所有 <span
 class="math inline">\(v\)</span>
-作为终点的边的个数（被其他顶点指向的次数）</p></li>
-<li><p>一个顶点 <span class="math inline">\(v\)</span>
+作为终点的边的个数（被其他顶点指向的次数）</li>
+<li>一个顶点 <span class="math inline">\(v\)</span>
 的<strong>出度</strong>(out-degree)，记作 <span
 class="math inline">\(deg^+(v)\)</span>，就是所有 <span
 class="math inline">\(v\)</span>
-作为起点的边的个数（指向其他顶点的次数）</p></li>
-<li><p>一个环使顶点的出度和入度同时+1</p></li>
+作为起点的边的个数（指向其他顶点的次数）</li>
+<li>一个环使顶点的出度和入度同时+1</li>
 </ul></li>
 <li><p>定理3 对存在有向边的图 <span
 class="math inline">\(G=(V,E)\)</span>，有</p>
@@ -419,13 +425,13 @@ class="math inline">\(v_1,v_2,...,v_n\)</span> 和 <span
 class="math inline">\(m\)</span> 条边 <span
 class="math inline">\(e_1,e_2,...e_m\)</span>，则其<strong>incidence
 matrices</strong>（关联矩阵）为 <span
-class="math inline">\([m_{ij}]\)</span> ，满足 <span
-class="math display">\[
+class="math inline">\([m_{ij}]\)</span> ，满足</p>
+<p><span class="math display">\[
 m_{ij}=\begin{cases}
 1&amp;\text{ if }\ e_j与v_i关联 \\
 0&amp;\text{ otherwise }  \end{cases}
-\]</span>
-<img title="" src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/2022-11-06-14-51-25-image.png" alt="" data-align="center" width="535"></p>
+\]</span></p>
+<p><img title="" src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/2022-11-06-14-51-25-image.png" alt="" data-align="center" width="535"></p>
 <p>关联矩阵可以用来表示带环（loop）的多重图，值得注意的是用来表示环的一列有且仅有一个元素为1（因为只有一个顶点与环关联），但通常情况下一列有两个元素为1，因为通常一条边与两个顶点相关</p>
 <p><img title="" src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/2022-11-06-14-56-35-image.png" alt="" width="564" data-align="center"></p></li>
 </ul>
@@ -496,17 +502,17 @@ class="math inline">\(e_i\)</span> 连接 <span
 class="math inline">\(x_{i-1}\)</span> 和 <span
 class="math inline">\(x_i\)</span></p>
 <ul>
-<li><p>称以上定义的路径经过（pass through）顶点 <span
+<li>称以上定义的路径经过（pass through）顶点 <span
 class="math inline">\(x_0, x_1, · · · , x_n\)</span>
 或遍历（traverse）边 <span class="math inline">\(e_1, e_2, · · · ,
-e_n\)</span></p></li>
-<li><p>当该图是简单图时，可以用顶点序列 <span class="math inline">\(x_0,
-x_1, · · · , x_n\)</span> 表示该路径</p></li>
-<li><p>若 <span class="math inline">\(u = v\)</span> 且 <span
+e_n\)</span></li>
+<li>当该图是简单图时，可以用顶点序列 <span class="math inline">\(x_0,
+x_1, · · · , x_n\)</span> 表示该路径</li>
+<li>若 <span class="math inline">\(u = v\)</span> 且 <span
 class="math inline">\(n &gt;
-0\)</span>，即该路径在相同的顶点开始和结束，则称它是<strong>回路</strong>（circuit）</p></li>
-<li><p>若路径或回路不包含相同的边，则称它是
-<strong>简单的</strong>（simple）</p></li>
+0\)</span>，即该路径在相同的顶点开始和结束，则称它是<strong>回路</strong>（circuit）</li>
+<li>若路径或回路不包含相同的边，则称它是
+<strong>简单的</strong>（simple）</li>
 </ul></li>
 <li><p>定义2</p>
 <p>对有向图来说，它从 <span class="math inline">\(u\)</span> 到 <span
@@ -816,9 +822,11 @@ class="math inline">\(n-2\)</span> 个顶点和 <span
 class="math inline">\(m-deg(u)-deg(v)\)</span> 条边。因为 <span
 class="math inline">\(H\)</span> 的边数最大为 <span
 class="math inline">\(C_{n-2}^{2}\)</span>
-（即任意两顶点之间都有一条边），也就是 <span class="math display">\[
+（即任意两顶点之间都有一条边），也就是</p>
+<p><span class="math display">\[
 \frac{(n-2)(n-3)}2\ \ or \ \ \frac{1}2(n^2-5n+6)
-\]</span> 于是 <span class="math inline">\(m-deg(u)-deg(v)\le
+\]</span></p>
+<p>于是 <span class="math inline">\(m-deg(u)-deg(v)\le
 \frac{1}2(n^2-5n+6)\)</span>，也即 <span
 class="math inline">\(deg(u)+deg(v)\ge
 m-\frac{1}2(n^2-5n+6)\)</span>，又由定理的条件 <span
@@ -954,7 +962,7 @@ algorithm），计算出近似的最短回路。</p>
 <ol type="1">
 <li>从任意顶点 <span class="math inline">\(v_1\)</span> 出发，取与 <span
 class="math inline">\(v_1\)</span> 距离最近的顶点 <span
-class="math inline">\(v_2\)</span>​ ，记 <span
+class="math inline">\(v_2\)</span> ，记 <span
 class="math inline">\((v_1, v_2)\)</span> 为经过这两个顶点的路径。</li>
 <li>如果已经记录了路径 <span
 class="math inline">\((v_1,v_2,...,v_p),p&lt;n\)</span>，取不在路径中且与
@@ -1058,10 +1066,11 @@ class="math inline">\(2\)</span> 的区域）或者环（可以产生度为 <spa
 class="math inline">\(1\)</span> 的区域），又因为它的顶点数至少为 <span
 class="math inline">\(3\)</span>，因此它的每个区域的度至少为 <span
 class="math inline">\(3\)</span> （包括那个无界的区域）。</p>
-<p>我们承认以下公式 <span class="math display">\[
+<p>我们承认以下公式</p>
+<p><span class="math display">\[
 2e = \sum_{all\ regions\ R}deg(R)
-\]</span>
-因为每条边都恰好出现在区域的边界中两次（无论是在两个不同区域中各一次还是在同一个区域中两次）。</p>
+\]</span></p>
+<p>因为每条边都恰好出现在区域的边界中两次（无论是在两个不同区域中各一次还是在同一个区域中两次）。</p>
 <p>设总共有 <span class="math inline">\(r\)</span> 个区域，那么可以推出
 <span class="math inline">\(2e\ge 3r\)</span>，又由 <span
 class="math inline">\(r=e-v+2\)</span> （欧拉公式），即可知 <span
@@ -1134,7 +1143,8 @@ class="math inline">\(\chi(G)\)</span> 。</p></li>
 ，因为任意两个顶点都相邻，因此每个顶点都需要一个颜色。</p></li>
 <li><p><span class="math inline">\(\chi(K_{m,n})=2\)</span>
 ，给其划分的两个集合分别涂上一种颜色即可。</p></li>
-<li><p>比较显然 <span class="math display">\[
+<li><p>比较显然</p>
+<p><span class="math display">\[
 \chi(C_n)= \begin{cases}2&amp;\text{if}\ n\ is\ even \\3&amp;\text{if}\
 n\ is\ odd \end{cases},n\ge3
 \]</span></p></li>
@@ -1198,8 +1208,14 @@ class="math inline">\(P_G(n)=P_{G_e}(n)-P_{G^e}(n)\)</span></li>
                     <i class="iconfont icon-tags mr-10" title="标签"></i>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/%E7%AC%94%E8%AE%B0-%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" title="笔记 离散数学">
-                        #笔记 离散数学
+                      <a href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">
+                        #笔记
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" title="离散数学">
+                        #离散数学
                       </a>
                     </span>
                     
