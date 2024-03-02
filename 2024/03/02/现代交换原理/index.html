@@ -11,7 +11,7 @@
   
   <title>
     
-      UART串口通信 
+      现代交换原理 
       
       
       |
@@ -157,25 +157,25 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">UART串口通信</div>
+      <div class="post-title">现代交换原理</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2024-02-28 16:36:41
+          2024-03-02 15:23:00
         </span>
         
               <span class="post-tags">
                 <i class="iconfont icon-tags mr-10" title="标签"></i>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" title="嵌入式">
-                    #嵌入式
+                  <a href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">
+                    #笔记
                   </a>
                 </span>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/STM32/" title="STM32">
-                    #STM32
+                  <a href="/tags/%E7%8E%B0%E4%BB%A3%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/" title="现代交换原理">
+                    #现代交换原理
                   </a>
                 </span>
                 
@@ -183,73 +183,147 @@
           
       </div>
       <div class="markdown-body">
-        <p>记录一下emb实验中学到的比较有用的技术。</p>
-<hr />
-<h3 id="uart">UART</h3>
-<p>UART是一种异步串行通信接口，常用于通过串口与外部设备进行通信。它通过发送和接收数据帧来实现数据传输，使用起来相对简单。UART通常包含发送器（Transmitter）和接收器（Receiver），通过两根信号线（传输线）进行双向通信。</p>
-<p>通常开发板提供了一个usb转串口的miniusb口，其接到核心板的usart1串口。USART可以通过时钟控制进行同步通信，在异步通信时与UART没有区别。</p>
-<p>UART协议将一长串数据切成很多固定长度的小段，分别发送。每小段数据前后会加上一些附加数据以保证通信的实时性和准确性，最后形成的每个小段叫做一个数据包——即1帧数据。</p>
+        <h1 id="现代交换原理">现代交换原理</h1>
+<h2 id="chapter1-交换概论">chapter1 交换概论</h2>
+<h3 id="交换的概念">1. 交换的概念</h3>
 <ul>
-<li>起始位：发出1位低电平信号，表示开始传输字符。</li>
-<li>数据位：真正发送的数据，一般为8位（1个字节），常采用ASCII编码，从最低位开始发送。</li>
-<li>校验位：用于检验接收到的数据是否正确，分为奇校验和偶校验。</li>
-<li>停止位：一组数据的结束传输的标志。可以是1位、1.5位、2位的高电平。</li>
-<li>空闲位：空闲时数据线为高电平状态，代表无数据传输。</li>
-<li>波特率：衡量传输速率的指标。UART通信中波特率等于比特率。</li>
-</ul>
-<p>UART通信的两个设备间，以上因素必须完全一致才能实现数据通信。（实践中通常不用特意配置，默认即可）</p>
-<p>UART有轮询、中断和DMA三种收发方式：</p>
+<li><p>交换</p>
+<p>Exchange vs. Switch</p>
+<p><strong>Switch</strong>
+偏指“转换”，狭义上指某个设备（交换机）中，数据从一个端口、网络到另一个端口、网络的过程。</p></li>
+<li><p>通信系统</p>
+<p>通信网的组成：</p>
 <ul>
-<li>轮询：CPU
-不断检测串口的状态标志来判断数据收发的情况。程序设计简单，但CPU
-在检测标志位期间，无法执行其他任务，CPU 利用率较低。</li>
-<li>中断：使能中断后，接收一字节数据或发送一字节后申请中断，在 ISR
-中完成后续处理。在数据收发期间CPU 可以执行其他任务，CPU
-利用率较高。</li>
-<li>DMA：初始化时设置相关参数，启动 DMA 传输后，数据传输过程不需要CPU
-的干预。传输完成后，再产生DMA中断，由CPU进行后续处理，传输效率最高。</li>
+<li>终端设备</li>
+<li>传输设备</li>
+<li>交换设备</li>
 </ul>
-<p>可以看到DMA方式是相对最高效的，它无需CPU干预直接把串口数据写入内存，仅当接收足够长的数据后才进入中断（相对地，中断方式收到每个字节都会申请中断）。</p>
-<h3
-id="使用dma空闲中断接收不定长数据">使用DMA空闲中断接收不定长数据</h3>
-<p>实际应用中，我们常常需要接收一段消息，其总长度无法预知。当然，从底层的角度一切都是断断续续的01数据流，什么叫一段消息？这里我简单将其定义为相对连续的一段数据流。</p>
-<p>为了接收不定长数据，我们需要考虑一种接收方式。</p>
-<p>考虑过几种方法，一种方法是在发送时给不定长数据填空，变成定长数据，通过DMA接收（HAL库中，可以在开启DMA接收的函数中传参指定触发中断的数据量）</p>
-<p>一种是规定一个数据帧的起始或终止符号，逐字节接收判断帧头帧尾来确定是不是收到了完整的一段数据，可以采取中断方式接收。</p>
-<p>当然上述方法其实是比较通用的，可以用任何接收方式包括轮询，但是显然比较低效且麻烦。</p>
-<p>最后查阅了相关资料，找到一种比较高效的方式，即串口空闲中断+DMA接收。</p>
-<p>空闲中断（Idle
-Interrupt）是UART通信中的一种中断类型。当UART处于空闲状态（没有接收到数据）且持续时间超过一个帧的传输时间时，空闲中断会触发，调用中断处理函数。空闲中断可以用于检测数据帧的结束或接收数据的完成。</p>
-<p>使用DMA+空闲中断即可直接把数据写入内存，且仅在接收到一个完整的数据帧后触发中断，实现高效的不定长数据接收。</p>
-<p>HAL库提供了现成的一组函数</p>
-<p><code>HAL_UARTEx_ReceiveToIdle_DMA(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size)</code></p>
-<p><code>HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)</code></p>
-<p>前者可以开启DMA空闲接收，后者是中断触发时的回调函数，由用户自行重载，在这里处理接收到的数据。</p>
-<p>想要实现命令行交互的功能，只需要在回调函数中解析命令，根据命令控制GPIO或向串口发送对应消息即可。</p>
-<h3 id="实践">实践</h3>
-<p>使用STM32cubeMX生成代码，引脚分配略。</p>
-<p>把USART1设置成异步收发模式。</p>
-<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/f1b00df7b9d13942426b0c661943e957.png" style="zoom:67%;" /></p>
-<p>由于需要使用DMA接收，开启外围到内存的DMA流。</p>
-<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/812d87d772881b7ff8aa58cd78c8d9d6.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/812d87d772881b7ff8aa58cd78c8d9d6.png" style="zoom:67%;" /></p>
-<p>开启全局中断。</p>
-<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/7b46922fa3c06c5510899ca474020c59.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/7b46922fa3c06c5510899ca474020c59.png" style="zoom:67%;" /></p>
-<p>生成代码。</p>
-<p>声明接收数组。</p>
-<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/d41fa8c9502cd4c54b0801f5dc1a7642.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/d41fa8c9502cd4c54b0801f5dc1a7642.png" style="zoom:67%;" /></p>
-<p>在主函数中调用DMA空闲接收函数启动接收。这里我会在中断回调函数重新启动接收，因此无需将其写在while循环中。</p>
-<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/a23446f54a227caf841c9aefea8e7f1c.png" alt="alt=https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/a23446f54a227caf841c9aefea8e7f1c.png" style="zoom:67%;" /></p>
-<p><strong>重载fputc，把printf重定向到串口输出。（有用的trick）</strong></p>
-<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/cd0e4e183a5086993e36c27d3133b1b7.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/cd0e4e183a5086993e36c27d3133b1b7.png" style="zoom:67%;" /></p>
-<p>重载回调函数。由于可以接收不定长数据，这里代码是从实验中截取，大概是做一个串口CLI。逻辑很简洁，直接匹配字符串前缀然后进入对应命令的处理函数即可。处理完数据后清空接收缓冲区并重新启动DMA接收，等待接收下一次数据。</p>
-<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/1ac7c7d6b70baa7f213ecfe8a601a1f2.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/1ac7c7d6b70baa7f213ecfe8a601a1f2.png" style="zoom:67%;" /></p>
+<p>无交换：点到点通信（全互连方式），<span
+class="math inline">\(N\)</span> 个终端需要<span
+class="math inline">\(N^2\)</span>​级对线路。</p>
+<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/202403020055183.png" alt="image-20240302005552138" style="zoom: 67%;" /></p>
+<p>交换 ：简化网络，实现可拓展广覆盖。</p>
+<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/202403020056542.png" alt="image-20240302005615499" style="zoom:80%;" /></p>
+<p><strong>交换：负责建立通信信道、传送通信信息</strong></p></li>
+</ul>
+<h3 id="通信网三对基本概念">2. 通信网三对基本概念</h3>
+<h4 id="信息传送">1.1 信息传送</h4>
+<ul>
+<li><p>面向连接工作方式（物理连接、逻辑连接）</p>
+<ul>
+<li><p>物理连接：对应物理线路，独占信道（未必是独占某条物理线路，比如可以是独占时分复用后一条线路上的一个时隙）。</p></li>
+<li><p>逻辑连接：又称虚连接，按需占用信道，是虚电路（Virtual
+Circuit）的工作方式。</p></li>
+</ul>
+<figure>
+<img
+src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/202403011707821.png"
+alt="image-20240301170701720" />
+<figcaption aria-hidden="true">image-20240301170701720</figcaption>
+</figure>
+<blockquote>
+<p>[!IMPORTANT]</p>
+<p>无论物理连接（独占信道）还是逻辑连接（按需使用信道），一旦连接建立，其信道都不会再改变的。</p>
+<p><a
+href="#virtual-circuit">虚电路的详细介绍&amp;逻辑连接与物理连接对比</a></p>
+</blockquote></li>
+<li><p>无连接工作方式</p>
+<figure>
+<img
+src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/202403011706725.png"
+alt="image-20240301170651648" />
+<figcaption aria-hidden="true">image-20240301170651648</figcaption>
+</figure></li>
+</ul>
+<blockquote>
+<p>[!NOTE]</p>
+<p>可以与TCP/UDP中的面向连接-无连接概念进行类比，但要注意两者的区别。</p>
+<p>TCP、UDP运行在更高的层次上，它们的连接是端到端的概念，不关心底层的路由与转发，因此不适用通信网信息传送中的概念。它们底层都基于IP协议，在通信网中都是无连接的。</p>
+<p>不过两对概念有着类似的思想，即<strong>数据包是否按照正确的顺序发送接收，并且保证数据传输的可靠性。</strong></p>
+<p>此外，它们有类似的特征，即<strong>包含“建立”、“传送”、“连接”三个阶段。</strong></p>
+</blockquote>
+<h4 id="时分复用">2.2 时分复用</h4>
+<ul>
+<li><p>同步时分复用</p>
+<ul>
+<li><strong>位置化信道</strong>：依据数字信号在时间轴上的位置区别各路信号</li>
+<li>用于电路交换</li>
+</ul>
+<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/202403011739302.png" alt="image-20240301173958098" style="zoom:50%;" /></p>
+<p>例子：30/32路PCM系统。一帧均分为32时隙（TS）。话音信号使用固定频率采样编码，数字信号固定64kbit/s。每TS传输8bit，其中30TS用于话路，其余2TS分别用于帧同步和传送信令（后面详细说明）。</p></li>
+<li><p>统计/异步时分复用</p>
+<ul>
+<li>标志化信道：每个分组前附加标志码，标示分组的输出端或传送路径</li>
+<li>用于分组交换和 ATM 交换</li>
+</ul>
+<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/202403011748069.png" alt="image-20240301174759966" style="zoom:50%;" /></p>
+<p>例子：IP网络是统计时分复用。</p>
+<p>对比：在传统的同步时分复用系统中，每个低速数据终端都固定地对应于共用信道中的一个时隙，而不管这些终端是否在工作，因而一帧中的有些时隙被闲置浪费了。而统计TDM只对那些正在工作的终端才分配时隙，从而可为多于时隙数的终端服务。</p></li>
+</ul>
+<h4 id="带宽分配">2.3 带宽分配</h4>
+<ul>
+<li><p>固定带宽分配</p>
+<p>适用于固定比特率业务（如话音），需资源预留。</p></li>
+<li><p>动态带宽分配</p>
+<p>用于时变比特率业务，需资源动态分配或竞争。</p>
+<blockquote>
+<p>[!TIP]</p>
+<p>可以类比成交通车道，固定车道/高峰加宽车道。</p>
+</blockquote></li>
+</ul>
+<h3 id="各种交换方式">3.各种交换方式</h3>
+<p><em>仅记录几种重要的交换方式，其序号继承课件</em></p>
+<blockquote>
+<p>[!NOTE]</p>
+<p>不要把交换方式和三对基本概念弄混，它们没有可比性。这些基本概念仅仅是对于一些专业名词的说明，它们在下面介绍交换方式所具备的特点时出现（以后也会经常出现）。</p>
+<p>另外，在介绍一些交换方式时，课件没有给出一个精准明确的”定义“，它们更像是某（几）种过程或机制模型的归纳，可能存在多种实现方式，在一些细节不必纠结。。</p>
+</blockquote>
+<h4 id="电路交换">3.1 电路交换</h4>
+<p>主要用于电话通信网（PSTN—Public Switched Telephone Network）。</p>
+<p>话信的特点在下一代Internet课给我们读的”END-TO-END ARGUMENTS IN SYSTEM
+DESIGN“中有被提到：其可以几乎<strong>不在意可靠性与准确性</strong>，但<strong>要求高实时性</strong>。该特性使得它成为了一个完美符合端到端原则的模型，即底层通信网络可以不作任何差错控制或其它处理，这能同时满足两个要求。</p>
+<p>电话通信的另一个特性是，一旦建立通信，就以<strong>恒定速率</strong>传输信号（电话不知道你有没有说话，它只是全盘接收所有声音信号并将其转为数字信号，因此其采样频率是固定的）。</p>
+<p>不知道是电话先被设计出来还是电路交换先被设计出来，但总之，电路交换好像就是为了电话通信而设计一般。</p>
+<p>电路交换的特点：</p>
+<ul>
+<li>面向连接的工作方式（物理连接）</li>
+<li>同步时分复用（信息传送的最小单位是时隙）</li>
+<li>固定带宽分配</li>
+<li>无差错控制机制</li>
+<li>对通信信息不作处理（透明传输）</li>
+<li>流量控制基于呼叫损失制（流量满了新的呼叫请求就被拒绝）</li>
+</ul>
+<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/202403012312550.png" alt="电路交换的基本过程" style="zoom: 67%;" /></p>
+<h4 id="报文交换">3.4 报文交换</h4>
+<p>主要用于公用电信网的电报自动交换。</p>
+<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/202403012334772.png" alt="image-20240301233402720" style="zoom:67%;" /></p>
+<h4 id="分组交换">3.5 分组交换</h4>
+<p>其基本过程与报文交换类似，只不过把数据进行了分组，其信息传送的最小单位变成了分组。</p>
+<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/202403020012437.png" alt="两种交换的对比" style="zoom: 67%;" /></p>
+<p><strong>”存储—转发“</strong>是这两种交换方式都具备的机制。它的意思是，交换机（中间节点）会把接收到的最小交换单位存储在交换机中，等处理完毕、排队结束后再转发。这相当于提供了一个缓存。</p>
+<p>在分组的形成中，需要关注以下两点：</p>
+<ul>
+<li>分组头：选路信息及其它控制信息</li>
+<li>分组大小：可变长，长度兼顾时延和开销</li>
+</ul>
+<p>分组交换又可以被细分成两种具体的形式。</p>
+<h5 id="虚电路-virtual-circuit-vc">3.5.1 虚电路 Virtual Circuit
+（VC）</h5>
+<p><img id="virtual-circuit" src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/202403020029659.png" alt="虚电路的特点" style="zoom:80%;" /></p>
+<p>逻辑连接是虚电路的连接方式。狭义地讲，它指通过路由表等方式为通信双方建立一条<strong>逻辑上的</strong>固定信道。</p>
+<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/202403020040518.png" alt="逻辑连接示意图" style="zoom: 67%;" /></p>
+<p>结合图片可以更好理解，节点A、B之间的信道在物理上既不属于DTE1-DTE3，也不属于DTE2-DTE4，<strong>这两个连接需要使用的完整信道都是通过路由表定义的——也就是说仅存在于逻辑中</strong>。事实上，只要删除路由表，连接就不存在了。</p>
+<p>从<strong>与物理信道的区别</strong>角度来看，A、B间的信道在任何连接需要时都可以被暂时占用（<strong>按需占用</strong>），没有哪个连接能够<strong>独占</strong>信道（这里需要注意”信道“与物理电路的区别，信道可以是逻辑的，比如在时分复用下，一条电路可以被分成多个信道，只要固定占用时间轴上一个位置，仍然是物理连接）。</p>
+<p>虚电路有两种类型：</p>
+<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/202403020108075.png" alt="虚电路的分类" style="zoom:80%;" /></p>
+<p>在上面的例子中，我们可以根据路由表是否可以更改来进行分类。</p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2023/03/20/20%E5%B2%81%E5%B0%8F%E8%AE%B0/" target="_self">
+              <a href="/2024/02/28/web%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -258,21 +332,21 @@ Interrupt）是UART通信中的一种中断类型。当UART处于空闲状态（
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2024-02-28 16:36:41
+              2024-03-02 15:23:00
             </span>
             
                   <span class="post-tags">
                     <i class="iconfont icon-tags mr-10" title="标签"></i>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" title="嵌入式">
-                        #嵌入式
+                      <a href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">
+                        #笔记
                       </a>
                     </span>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/STM32/" title="STM32">
-                        #STM32
+                      <a href="/tags/%E7%8E%B0%E4%BB%A3%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/" title="现代交换原理">
+                        #现代交换原理
                       </a>
                     </span>
                     
@@ -280,11 +354,6 @@ Interrupt）是UART通信中的一种中断类型。当UART处于空闲状态（
               
           </div>
           <div class="post-foot-prev">
-            
-              <a href="/2024/02/28/ESP8266%20WIFI%E9%80%9A%E4%BF%A1/" target="_self">
-                <span>下一页</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
             
           </div>
         </div>
@@ -298,7 +367,8 @@ Interrupt）是UART通信中的一种中断类型。当UART处于空闲状态（
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#uart"><span class="toc-text">UART</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8dma%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E4%B8%8D%E5%AE%9A%E9%95%BF%E6%95%B0%E6%8D%AE"><span class="toc-text">使用DMA空闲中断接收不定长数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5"><span class="toc-text">实践</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8E%B0%E4%BB%A3%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86"><span class="toc-text">现代交换原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter1-%E4%BA%A4%E6%8D%A2%E6%A6%82%E8%AE%BA"><span class="toc-text">chapter1 交换概论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E6%8D%A2%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">1. 交换的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E7%BD%91%E4%B8%89%E5%AF%B9%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">2. 通信网三对基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E4%BC%A0%E9%80%81"><span class="toc-text">1.1 信息传送</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%B6%E5%88%86%E5%A4%8D%E7%94%A8"><span class="toc-text">2.2 时分复用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%A6%E5%AE%BD%E5%88%86%E9%85%8D"><span class="toc-text">2.3 带宽分配</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E4%BA%A4%E6%8D%A2%E6%96%B9%E5%BC%8F"><span class="toc-text">3.各种交换方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2"><span class="toc-text">3.1 电路交换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%A5%E6%96%87%E4%BA%A4%E6%8D%A2"><span class="toc-text">3.4 报文交换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2"><span class="toc-text">3.5 分组交换</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%99%9A%E7%94%B5%E8%B7%AF-virtual-circuit-vc"><span class="toc-text">3.5.1 虚电路 Virtual Circuit
+（VC）</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
       
     </div>
   </div>
@@ -618,12 +688,12 @@ Interrupt）是UART通信中的一种中断类型。当UART处于空闲状态（
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + UART%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1 + '&url=' + http%3A%2F%2Fbaoabaob.github.io%2F2024%2F02%2F28%2FUART%25E4%25B8%25B2%25E5%258F%25A3%25E9%2580%259A%25E4%25BF%25A1%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E7%8E%B0%E4%BB%A3%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86 + '&url=' + http%3A%2F%2Fbaoabaob.github.io%2F2024%2F03%2F02%2F%25E7%258E%25B0%25E4%25BB%25A3%25E4%25BA%25A4%25E6%258D%25A2%25E5%258E%259F%25E7%2590%2586%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://baoabaob.github.io/2024/02/28/UART%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://baoabaob.github.io/2024/03/02/%E7%8E%B0%E4%BB%A3%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
