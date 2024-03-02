@@ -8,7 +8,7 @@ tags: 数字逻辑
 
 比如下图
 
-<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/202212052127704.png" alt="image-20221205212708637" style="zoom:50%;" />
+<img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/202212052127704.png" alt="image-20221205212708637" style="zoom:50%;" />
 
 我们要求在ADD指令之后，以co为条件，把加法器的结果打入RA或RB，那么在条件框之后必须跳转到两个条件输出框LA和LB，保证LA或LB与ADD在同一周期内执行。
 
@@ -16,7 +16,7 @@ tags: 数字逻辑
 
 比如下图，A>B之后就无所谓接状态框或条件输出框。
 
-<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/202212052132815.png" alt="image-20221205213215767" style="zoom:50%;" />
+<img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/202212052132815.png" alt="image-20221205213215767" style="zoom:50%;" />
 
 
 
