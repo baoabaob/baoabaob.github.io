@@ -17,14 +17,17 @@
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
     "hexo-generator-index": "^3.0.0",
+    "hexo-generator-search": "^2.4.3",
     "hexo-generator-tag": "^2.0.0",
     "hexo-renderer-ejs": "^2.0.0",
     "hexo-renderer-markdown-it": "^7.1.1",
-    "hexo-renderer-pandoc": "^0.4.0",
     "hexo-renderer-stylus": "^3.0.1",
     "hexo-server": "^3.0.0",
     "hexo-theme-landscape": "^1.0.0",
+    "katex": "^0.16.9",
+    "markdown-it": "^14.0.0",
     "markdown-it-github-alerts": "^0.3.0",
+    "markdown-it-mathjax3": "^4.3.2",
     "npm-upgrade": "^3.1.0"
   }
 }
