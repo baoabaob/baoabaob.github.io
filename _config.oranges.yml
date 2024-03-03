@@ -26,7 +26,7 @@ favicon:
 
 # 用户头像与昵称
 avatar:
-  author_photo: https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/avatar.jpg?x-oss-process=image/format,heic
+  author_photo: https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/avatar.jpg?x-oss-process=image/format,avif
   author_nickname: cccake
   path: /
 
