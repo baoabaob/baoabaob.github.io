@@ -4,9 +4,13 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="keywords" content="blog,individual,hexo,node" />
   <meta name="author" content="翻白肚的活鱼" />
+  <!-- Open Graph Description 简短摘要-->
+  
+  <!-- 用于搜索引擎的文章摘要 -->
+  
   <meta name="description" content="兴趣使然的，用来纾解创造欲的地方" />
+  
   
   
   <title>
@@ -161,7 +165,7 @@
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2024-02-28 16:36:41
+          2024-02-28 19:28:19
         </span>
         
               <span class="post-tags">
@@ -184,8 +188,8 @@
       </div>
       <div class="markdown-body">
         <p>记录一下emb实验中学到的比较有用的技术。</p>
-<hr />
-<h3 id="uart">UART</h3>
+<hr>
+<h3 id="UART">UART</h3>
 <p>UART是一种异步串行通信接口，常用于通过串口与外部设备进行通信。它通过发送和接收数据帧来实现数据传输，使用起来相对简单。UART通常包含发送器（Transmitter）和接收器（Receiver），通过两根信号线（传输线）进行双向通信。</p>
 <p>通常开发板提供了一个usb转串口的miniusb口，其接到核心板的usart1串口。USART可以通过时钟控制进行同步通信，在异步通信时与UART没有区别。</p>
 <p>UART协议将一长串数据切成很多固定长度的小段，分别发送。每小段数据前后会加上一些附加数据以保证通信的实时性和准确性，最后形成的每个小段叫做一个数据包——即1帧数据。</p>
@@ -200,26 +204,19 @@
 <p>UART通信的两个设备间，以上因素必须完全一致才能实现数据通信。（实践中通常不用特意配置，默认即可）</p>
 <p>UART有轮询、中断和DMA三种收发方式：</p>
 <ul>
-<li>轮询：CPU
-不断检测串口的状态标志来判断数据收发的情况。程序设计简单，但CPU
-在检测标志位期间，无法执行其他任务，CPU 利用率较低。</li>
-<li>中断：使能中断后，接收一字节数据或发送一字节后申请中断，在 ISR
-中完成后续处理。在数据收发期间CPU 可以执行其他任务，CPU
-利用率较高。</li>
-<li>DMA：初始化时设置相关参数，启动 DMA 传输后，数据传输过程不需要CPU
-的干预。传输完成后，再产生DMA中断，由CPU进行后续处理，传输效率最高。</li>
+<li>轮询：CPU 不断检测串口的状态标志来判断数据收发的情况。程序设计简单，但CPU 在检测标志位期间，无法执行其他任务，CPU 利用率较低。</li>
+<li>中断：使能中断后，接收一字节数据或发送一字节后申请中断，在 ISR 中完成后续处理。在数据收发期间CPU 可以执行其他任务，CPU 利用率较高。</li>
+<li>DMA：初始化时设置相关参数，启动 DMA 传输后，数据传输过程不需要CPU 的干预。传输完成后，再产生DMA中断，由CPU进行后续处理，传输效率最高。</li>
 </ul>
 <p>可以看到DMA方式是相对最高效的，它无需CPU干预直接把串口数据写入内存，仅当接收足够长的数据后才进入中断（相对地，中断方式收到每个字节都会申请中断）。</p>
-<h3
-id="使用dma空闲中断接收不定长数据">使用DMA空闲中断接收不定长数据</h3>
+<h3 id="使用DMA空闲中断接收不定长数据">使用DMA空闲中断接收不定长数据</h3>
 <p>实际应用中，我们常常需要接收一段消息，其总长度无法预知。当然，从底层的角度一切都是断断续续的01数据流，什么叫一段消息？这里我简单将其定义为相对连续的一段数据流。</p>
 <p>为了接收不定长数据，我们需要考虑一种接收方式。</p>
 <p>考虑过几种方法，一种方法是在发送时给不定长数据填空，变成定长数据，通过DMA接收（HAL库中，可以在开启DMA接收的函数中传参指定触发中断的数据量）</p>
 <p>一种是规定一个数据帧的起始或终止符号，逐字节接收判断帧头帧尾来确定是不是收到了完整的一段数据，可以采取中断方式接收。</p>
 <p>当然上述方法其实是比较通用的，可以用任何接收方式包括轮询，但是显然比较低效且麻烦。</p>
 <p>最后查阅了相关资料，找到一种比较高效的方式，即串口空闲中断+DMA接收。</p>
-<p>空闲中断（Idle
-Interrupt）是UART通信中的一种中断类型。当UART处于空闲状态（没有接收到数据）且持续时间超过一个帧的传输时间时，空闲中断会触发，调用中断处理函数。空闲中断可以用于检测数据帧的结束或接收数据的完成。</p>
+<p>空闲中断（Idle Interrupt）是UART通信中的一种中断类型。当UART处于空闲状态（没有接收到数据）且持续时间超过一个帧的传输时间时，空闲中断会触发，调用中断处理函数。空闲中断可以用于检测数据帧的结束或接收数据的完成。</p>
 <p>使用DMA+空闲中断即可直接把数据写入内存，且仅在接收到一个完整的数据帧后触发中断，实现高效的不定长数据接收。</p>
 <p>HAL库提供了现成的一组函数</p>
 <p><code>HAL_UARTEx_ReceiveToIdle_DMA(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size)</code></p>
@@ -229,20 +226,20 @@ Interrupt）是UART通信中的一种中断类型。当UART处于空闲状态（
 <h3 id="实践">实践</h3>
 <p>使用STM32cubeMX生成代码，引脚分配略。</p>
 <p>把USART1设置成异步收发模式。</p>
-<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/f1b00df7b9d13942426b0c661943e957.png" style="zoom:67%;" /></p>
+<img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/f1b00df7b9d13942426b0c661943e957.png" style="zoom:67%;" />
 <p>由于需要使用DMA接收，开启外围到内存的DMA流。</p>
-<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/812d87d772881b7ff8aa58cd78c8d9d6.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/812d87d772881b7ff8aa58cd78c8d9d6.png" style="zoom:67%;" /></p>
+<img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/812d87d772881b7ff8aa58cd78c8d9d6.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/812d87d772881b7ff8aa58cd78c8d9d6.png" style="zoom:67%;" />
 <p>开启全局中断。</p>
-<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/7b46922fa3c06c5510899ca474020c59.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/7b46922fa3c06c5510899ca474020c59.png" style="zoom:67%;" /></p>
+<img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/7b46922fa3c06c5510899ca474020c59.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/7b46922fa3c06c5510899ca474020c59.png" style="zoom:67%;" />
 <p>生成代码。</p>
 <p>声明接收数组。</p>
-<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/d41fa8c9502cd4c54b0801f5dc1a7642.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/d41fa8c9502cd4c54b0801f5dc1a7642.png" style="zoom:67%;" /></p>
+<img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/d41fa8c9502cd4c54b0801f5dc1a7642.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/d41fa8c9502cd4c54b0801f5dc1a7642.png" style="zoom:67%;" />
 <p>在主函数中调用DMA空闲接收函数启动接收。这里我会在中断回调函数重新启动接收，因此无需将其写在while循环中。</p>
-<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/a23446f54a227caf841c9aefea8e7f1c.png" alt="alt=https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/a23446f54a227caf841c9aefea8e7f1c.png" style="zoom:67%;" /></p>
+<img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/a23446f54a227caf841c9aefea8e7f1c.png" alt="alt=https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/a23446f54a227caf841c9aefea8e7f1c.png" style="zoom:67%;" />
 <p><strong>重载fputc，把printf重定向到串口输出。（有用的trick）</strong></p>
-<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/cd0e4e183a5086993e36c27d3133b1b7.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/cd0e4e183a5086993e36c27d3133b1b7.png" style="zoom:67%;" /></p>
+<img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/cd0e4e183a5086993e36c27d3133b1b7.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/cd0e4e183a5086993e36c27d3133b1b7.png" style="zoom:67%;" />
 <p>重载回调函数。由于可以接收不定长数据，这里代码是从实验中截取，大概是做一个串口CLI。逻辑很简洁，直接匹配字符串前缀然后进入对应命令的处理函数即可。处理完数据后清空接收缓冲区并重新启动DMA接收，等待接收下一次数据。</p>
-<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/1ac7c7d6b70baa7f213ecfe8a601a1f2.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/1ac7c7d6b70baa7f213ecfe8a601a1f2.png" style="zoom:67%;" /></p>
+<img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/1ac7c7d6b70baa7f213ecfe8a601a1f2.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/1ac7c7d6b70baa7f213ecfe8a601a1f2.png" style="zoom:67%;" />
 
       </div>
       
@@ -258,7 +255,7 @@ Interrupt）是UART通信中的一种中断类型。当UART处于空闲状态（
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2024-02-28 16:36:41
+              2024-02-28 19:28:19
             </span>
             
                   <span class="post-tags">
@@ -298,7 +295,7 @@ Interrupt）是UART通信中的一种中断类型。当UART处于空闲状态（
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#uart"><span class="toc-text">UART</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8dma%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E4%B8%8D%E5%AE%9A%E9%95%BF%E6%95%B0%E6%8D%AE"><span class="toc-text">使用DMA空闲中断接收不定长数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5"><span class="toc-text">实践</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#UART"><span class="toc-text">UART</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8DMA%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E4%B8%8D%E5%AE%9A%E9%95%BF%E6%95%B0%E6%8D%AE"><span class="toc-text">使用DMA空闲中断接收不定长数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5"><span class="toc-text">实践</span></a></li></ol>
       
     </div>
   </div>
@@ -355,11 +352,13 @@ Interrupt）是UART通信中的一种中断类型。当UART处于空闲状态（
     <ul>
       
         <li>
-          <a title="github" target="_blank" rel="noopener" href="https://github.com/baoabaob/">
-            <i class="iconfont icon-github"></i>
-          </a>
+          
+              <a title="github" target="_blank" rel="noopener" href="https://github.com/baoabaob/">
+                <i class="iconfont icon-github"></i>
+              </a>
+              
         </li>
-      
+        
     </ul>
   </div>
   

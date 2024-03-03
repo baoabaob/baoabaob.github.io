@@ -4,9 +4,13 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="keywords" content="blog,individual,hexo,node" />
   <meta name="author" content="翻白肚的活鱼" />
+  <!-- Open Graph Description 简短摘要-->
+  
+  <!-- 用于搜索引擎的文章摘要 -->
+  
   <meta name="description" content="兴趣使然的，用来纾解创造欲的地方" />
+  
   
   
   <title>
@@ -161,7 +165,7 @@
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2022-12-05 13:24:00
+          2024-03-03 07:14:59
         </span>
         
               <span class="post-tags">
@@ -179,11 +183,11 @@
       <div class="markdown-body">
         <p>在绘制asm图时,某些情况下我们必须使用条件输出图框。</p>
 <p>比如下图</p>
-<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/202212052127704.png" alt="image-20221205212708637" style="zoom:50%;" /></p>
+<img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/202212052127704.png" alt="image-20221205212708637" style="zoom:50%;" />
 <p>我们要求在ADD指令之后，以co为条件，把加法器的结果打入RA或RB，那么在条件框之后必须跳转到两个条件输出框LA和LB，保证LA或LB与ADD在同一周期内执行。</p>
 <p>用状态输出框是因为这里LA和LB打入数据是与加法器的输出有关的，因此必须和ADD在同一个周期内（否则加法器没有输出）；但是如果只是根据信号跳转状态，而前后状态下的数据不相互影响就不必在同一个周期。</p>
 <p>比如下图，A&gt;B之后就无所谓接状态框或条件输出框。</p>
-<p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/202212052132815.png" alt="image-20221205213215767" style="zoom:50%;" /></p>
+<img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/202212052132815.png" alt="image-20221205213215767" style="zoom:50%;" />
 
       </div>
       
@@ -199,7 +203,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2022-12-05 13:24:00
+              2024-03-03 07:14:59
             </span>
             
                   <span class="post-tags">
@@ -273,11 +277,13 @@
     <ul>
       
         <li>
-          <a title="github" target="_blank" rel="noopener" href="https://github.com/baoabaob/">
-            <i class="iconfont icon-github"></i>
-          </a>
+          
+              <a title="github" target="_blank" rel="noopener" href="https://github.com/baoabaob/">
+                <i class="iconfont icon-github"></i>
+              </a>
+              
         </li>
-      
+        
     </ul>
   </div>
   
