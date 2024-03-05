@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>linux自定义系统服务</title>
+      <link href="/2024/03/03/linux%E6%96%B0%E5%BB%BA%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/"/>
+      <url>/2024/03/03/linux%E6%96%B0%E5%BB%BA%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/</url>
+      
+        <content type="html"><![CDATA[<p>kook越来越烂了，于是我找到了TeamSpeak这个软件，一通捣鼓部署在服务器上了。</p><img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/202403032147198.png" alt="image-20240303214719689" style="zoom:67%;" /><p>不仅纯免费、音质佳，还能和朋友们一起听歌♪(´▽｀)</p><p>不过装好了以后，想启动需要找到其路径，每次服务器重启还要重新启动。我希望它能够像nginx之类的应用一样可以使用systemctl来方便地管理。</p><p>那么怎么把自定义的软件加入系统服务呢？</p><ol><li><p>在<code>/usr/lib/systemd/system</code>目录下添加服务对应的配置文件：</p><p><code> vi /usr/lib/systemd/system/服务名称.service</code></p></li><li><p>最基本的配置格式：</p><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=服务描述</span><br><span class="line"><span class="attr">After</span>=服务依赖（再这些服务后启动本服务）</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Type</span>=服务类型</span><br><span class="line"><span class="attr">ExecStart</span>=启动命令</span><br><span class="line"><span class="attr">ExecStop</span>=终止命令</span><br><span class="line"><span class="attr">ExecReload</span>=重启命令</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=服务安装设置</span><br></pre></td></tr></table></figure></li></ol><p>下面以对TeamSpeak的配置为例子，首先创建了ts3.service，然后输入内容：</p><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=Teamspeak server</span><br><span class="line"><span class="attr">After</span>=network.target</span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">WorkingDirectory</span>=/home/teamspeak/teamspeak3</span><br><span class="line"><span class="attr">User</span>=teamspeak</span><br><span class="line"><span class="attr">Group</span>=teamspeak</span><br><span class="line"><span class="attr">Type</span>=forking</span><br><span class="line"><span class="attr">ExecStart</span>=/home/teamspeak/teamspeak3/ts3server_startscript.sh start </span><br><span class="line"><span class="attr">ExecStop</span>=/home/teamspeak/teamspeak3/ts3server_startscript.sh stop</span><br><span class="line"><span class="attr">RestartSec</span>=<span class="number">15</span></span><br><span class="line"><span class="attr">Restart</span>=always</span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br></pre></td></tr></table></figure><p>其中<code>Restart</code>定义何种情况 Systemd 会自动重启当前服务，可能的值包括<code>always</code>（总是重启）、<code>on-success</code>、<code>on-failure</code>、<code>on-abnormal</code>、<code>on-abort</code>、<code>on-watchdog</code>。</p><p><code>type</code>定义启动时的进程行为，它有以下几种值：</p><ul><li><p><code>Type=simple</code>：默认值，执行ExecStart指定的命令，启动主进程</p></li><li><p><code>Type=forking</code>：以 fork 方式从父进程创建子进程，创建后父进程会立即退出</p></li><li><p><code>Type=oneshot</code>：一次性进程，Systemd 会等当前服务退出，再继续往下执行</p></li><li><p><code>Type=dbus</code>：当前服务通过D-Bus启动</p></li><li><p><code>Type=notify</code>：当前服务启动完毕，会通知Systemd，再继续往下执行</p></li><li><p><code>Type=idle</code>：若有其他任务执行完毕，当前服务才会运行</p></li></ul><p>配置完毕后，就可以用熟悉的systemctl来启动或配置ts了：</p><p>启动服务端</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start ts3</span><br></pre></td></tr></table></figure><p>关闭服务端</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop ts3</span><br></pre></td></tr></table></figure><p>开机自启</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> ts3</span><br></pre></td></tr></table></figure><p>查看服务端运行信息</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status ts3</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>现代交换原理</title>
       <link href="/2024/03/02/%E7%8E%B0%E4%BB%A3%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/"/>
       <url>/2024/03/02/%E7%8E%B0%E4%BB%A3%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/</url>
