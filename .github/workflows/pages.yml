@@ -17,12 +17,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "18.15.0"
-      # Install pandoc for mathjax
-      - name: Install pandoc
-        run: |
-          cd /tmp
-          wget -c https://github.com/jgm/pandoc/releases/download/3.1.11.1/pandoc-3.1.11.1-1-amd64.deb
-          sudo dpkg -i pandoc-3.1.11.1-1-amd64.deb
       - name: Cache NPM dependencies
         uses: actions/cache@v3
         with:
