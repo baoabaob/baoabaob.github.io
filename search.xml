@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>Datawhale AI 夏令营-机器学习笔记</title>
+      <link href="/2024/07/14/Datawhale-AI-%E5%A4%8F%E4%BB%A4%E8%90%A5-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <url>/2024/07/14/Datawhale-AI-%E5%A4%8F%E4%BB%A4%E8%90%A5-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<h1>Re0：从零开始的机器学习竞赛入门</h1><p>前情提要：报名参加了第二期Datawhale 2024 年 AI 夏令营的机器学习方向，本篇作一个笔记的汇总。</p><h2 id="TASK1：五分钟跑通baseline-一站式体验真方便">TASK1：五分钟跑通baseline 一站式体验真方便</h2><p>首先在task1中明确这次学习的任务：基于讯飞开放平台的<strong>电力需求预测挑战赛</strong>，一边学习一边优化模型，提高预测分数。</p><h3 id="背景说明">背景说明</h3><h4 id="1-电力需求挑战赛">1. 电力需求挑战赛</h4><ul><li><p>官方链接：<a href="https://challenge.xfyun.cn/topic/info?type=electricity-demand&amp;ch=dw24_uGS8Gs">https://challenge.xfyun.cn/topic/info?type=electricity-demand&amp;ch=dw24_uGS8Gs</a></p></li><li><p>任务：给定多个房屋对应电力消耗历史N天的相关序列数据等信息，预测房屋对应电力的消耗。</p></li><li><p>数据格式：</p><table><thead><tr><th>特征字段</th><th>字段描述</th></tr></thead><tbody><tr><td>id</td><td>房屋id</td></tr><tr><td>dt</td><td>日标识，[1,N]</td></tr><tr><td>type</td><td>房屋类型</td></tr><tr><td>target</td><td>实际电力消耗，预测目标</td></tr></tbody></table></li><li><p>判准：预测数据与真实数据的均方差：</p><p><img src="https://openres.xfyun.cn/xfyundoc/2024-06-29/341fad9d-203f-409d-b118-a4ed9d411f8e/1719632410485/108.png" alt="img"></p></li></ul><h4 id="2-飞桨AI-Studio">2. 飞桨AI Studio</h4><ul><li><p>官网：<a href="https://aistudio.baidu.com/">https://aistudio.baidu.com/</a></p></li><li><p>基于百度深度学习开源平台<em>飞桨</em>的人工智能学习与实训社区，为开发者提供了功能强大的线上训练环境、免费GPU算力及存储资源。</p></li></ul><h4 id="3-BML-codelab">3. BML codelab</h4><ul><li>百度的一站式AI开发平台</li></ul><hr><p>未完待续。。。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 笔记 </tag>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>致我独一无二的玫瑰</title>
       <link href="/2024/04/12/%E8%87%B4%E6%88%91%E7%8B%AC%E4%B8%80%E6%97%A0%E4%BA%8C%E7%9A%84%E7%8E%AB%E7%91%B0/"/>
       <url>/2024/04/12/%E8%87%B4%E6%88%91%E7%8B%AC%E4%B8%80%E6%97%A0%E4%BA%8C%E7%9A%84%E7%8E%AB%E7%91%B0/</url>

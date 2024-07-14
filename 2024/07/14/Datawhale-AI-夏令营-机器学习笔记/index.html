@@ -15,7 +15,7 @@
   
   <title>
     
-      archive_a: 2024/2 
+      Datawhale AI 夏令营-机器学习笔记 
       
       
       |
@@ -116,199 +116,239 @@
 
 
       <div class="flex-container">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
 
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2024</span>
-          </h2>
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Datawhale AI 夏令营-机器学习笔记</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2024-07-14 10:27:53
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">
+                    #笔记
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/AI/" title="AI">
+                    #AI
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h1>Re0：从零开始的机器学习竞赛入门</h1>
+<p>前情提要：报名参加了第二期Datawhale 2024 年 AI 夏令营的机器学习方向，本篇作一个笔记的汇总。</p>
+<h2 id="TASK1：五分钟跑通baseline-一站式体验真方便">TASK1：五分钟跑通baseline 一站式体验真方便</h2>
+<p>首先在task1中明确这次学习的任务：基于讯飞开放平台的<strong>电力需求预测挑战赛</strong>，一边学习一边优化模型，提高预测分数。</p>
+<h3 id="背景说明">背景说明</h3>
+<h4 id="1-电力需求挑战赛">1. 电力需求挑战赛</h4>
+<ul>
+<li>
+<p>官方链接：<a target="_blank" rel="noopener" href="https://challenge.xfyun.cn/topic/info?type=electricity-demand&amp;ch=dw24_uGS8Gs">https://challenge.xfyun.cn/topic/info?type=electricity-demand&amp;ch=dw24_uGS8Gs</a></p>
+</li>
+<li>
+<p>任务：给定多个房屋对应电力消耗历史N天的相关序列数据等信息，预测房屋对应电力的消耗。</p>
+</li>
+<li>
+<p>数据格式：</p>
+<table>
+<thead>
+<tr>
+<th>特征字段</th>
+<th>字段描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>房屋id</td>
+</tr>
+<tr>
+<td>dt</td>
+<td>日标识，[1,N]</td>
+</tr>
+<tr>
+<td>type</td>
+<td>房屋类型</td>
+</tr>
+<tr>
+<td>target</td>
+<td>实际电力消耗，预测目标</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>判准：预测数据与真实数据的均方差：</p>
+<p><img src="https://openres.xfyun.cn/xfyundoc/2024-06-29/341fad9d-203f-409d-b118-a4ed9d411f8e/1719632410485/108.png" alt="img"></p>
+</li>
+</ul>
+<h4 id="2-飞桨AI-Studio">2. 飞桨AI Studio</h4>
+<ul>
+<li>
+<p>官网：<a target="_blank" rel="noopener" href="https://aistudio.baidu.com/">https://aistudio.baidu.com/</a></p>
+</li>
+<li>
+<p>基于百度深度学习开源平台<em>飞桨</em>的人工智能学习与实训社区，为开发者提供了功能强大的线上训练环境、免费GPU算力及存储资源。</p>
+</li>
+</ul>
+<h4 id="3-BML-codelab">3. BML codelab</h4>
+<ul>
+<li>百度的一站式AI开发平台</li>
+</ul>
+<hr>
+<p>未完待续。。。</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2024/04/12/%E8%87%B4%E6%88%91%E7%8B%AC%E4%B8%80%E6%97%A0%E4%BA%8C%E7%9A%84%E7%8E%AB%E7%91%B0/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2024-07-14 10:27:53
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">
+                        #笔记
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/AI/" title="AI">
+                        #AI
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
       
-      <div class="post-item" title="Datawhale AI 夏令营-机器学习笔记">
-        <div class="time-m-d">07-14</div>
-        <div class="title">
-          <a href="/2024/07/14/Datawhale-AI-%E5%A4%8F%E4%BB%A4%E8%90%A5-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-            <span>Datawhale AI 夏令营-机器学习笔记</span>
-          </a>
-        </div>
-      </div>
+    </div>
     
-      <div class="post-item" title="致我独一无二的玫瑰">
-        <div class="time-m-d">04-12</div>
-        <div class="title">
-          <a href="/2024/04/12/%E8%87%B4%E6%88%91%E7%8B%AC%E4%B8%80%E6%97%A0%E4%BA%8C%E7%9A%84%E7%8E%AB%E7%91%B0/">
-            <span>致我独一无二的玫瑰</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="计算机系统结构">
-        <div class="time-m-d">04-12</div>
-        <div class="title">
-          <a href="/2024/04/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/">
-            <span>计算机系统结构</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="碎碎念">
-        <div class="time-m-d">04-06</div>
-        <div class="title">
-          <a href="/2024/04/06/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">
-            <span>碎碎念</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="建站记录续">
-        <div class="time-m-d">03-05</div>
-        <div class="title">
-          <a href="/2024/03/05/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95%E7%BB%AD/">
-            <span>建站记录续</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="linux自定义系统服务">
-        <div class="time-m-d">03-03</div>
-        <div class="title">
-          <a href="/2024/03/03/linux%E6%96%B0%E5%BB%BA%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/">
-            <span>linux自定义系统服务</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="现代交换原理">
-        <div class="time-m-d">03-02</div>
-        <div class="title">
-          <a href="/2024/03/02/%E7%8E%B0%E4%BB%A3%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/">
-            <span>现代交换原理</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="web后端开发技术">
-        <div class="time-m-d">02-28</div>
-        <div class="title">
-          <a href="/2024/02/28/web%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/">
-            <span>web后端开发技术</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="ESP8266 WIFI通信">
-        <div class="time-m-d">02-28</div>
-        <div class="title">
-          <a href="/2024/02/28/ESP8266%20WIFI%E9%80%9A%E4%BF%A1/">
-            <span>ESP8266 WIFI通信</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="UART串口通信">
-        <div class="time-m-d">02-28</div>
-        <div class="title">
-          <a href="/2024/02/28/UART%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/">
-            <span>UART串口通信</span>
-          </a>
-        </div>
-      </div>
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2023</span>
-          </h2>
-        </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
       
-      <div class="post-item" title="20岁小记">
-        <div class="time-m-d">03-20</div>
-        <div class="title">
-          <a href="/2023/03/20/20%E5%B2%81%E5%B0%8F%E8%AE%B0/">
-            <span>20岁小记</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="临终感言">
-        <div class="time-m-d">02-11</div>
-        <div class="title">
-          <a href="/2023/02/11/%E4%B8%B4%E7%BB%88%E6%84%9F%E8%A8%80/">
-            <span>临终感言</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="最少与非门问题">
-        <div class="time-m-d">01-21</div>
-        <div class="title">
-          <a href="/2023/01/21/%E6%9C%80%E5%B0%91%E4%B8%8E%E9%9D%9E%E9%97%A8%E9%97%AE%E9%A2%98/">
-            <span>最少与非门问题</span>
-          </a>
-        </div>
-      </div>
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2022</span>
-          </h2>
-        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">Re0：从零开始的机器学习竞赛入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#TASK1%EF%BC%9A%E4%BA%94%E5%88%86%E9%92%9F%E8%B7%91%E9%80%9Abaseline-%E4%B8%80%E7%AB%99%E5%BC%8F%E4%BD%93%E9%AA%8C%E7%9C%9F%E6%96%B9%E4%BE%BF"><span class="toc-text">TASK1：五分钟跑通baseline 一站式体验真方便</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E8%AF%B4%E6%98%8E"><span class="toc-text">背景说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%94%B5%E5%8A%9B%E9%9C%80%E6%B1%82%E6%8C%91%E6%88%98%E8%B5%9B"><span class="toc-text">1. 电力需求挑战赛</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%A3%9E%E6%A1%A8AI-Studio"><span class="toc-text">2. 飞桨AI Studio</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-BML-codelab"><span class="toc-text">3. BML codelab</span></a></li></ol></li></ol></li></ol></li></ol>
       
-      <div class="post-item" title="asm图中的条件输出框和状态框">
-        <div class="time-m-d">12-05</div>
-        <div class="title">
-          <a href="/2022/12/05/asm%E5%9B%BE%E4%B8%AD%E7%9A%84%E6%9D%A1%E4%BB%B6%E8%BE%93%E5%87%BA%E6%A1%86%E5%92%8C%E7%8A%B6%E6%80%81%E6%A1%86/">
-            <span>asm图中的条件输出框和状态框</span>
-          </a>
-        </div>
-      </div>
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="关于markdown">
-        <div class="time-m-d">12-03</div>
-        <div class="title">
-          <a href="/2022/12/03/%E5%85%B3%E4%BA%8Emarkdown/">
-            <span>关于markdown</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="离散数学（下）">
-        <div class="time-m-d">12-03</div>
-        <div class="title">
-          <a href="/2022/12/03/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%B8%8B%EF%BC%89/">
-            <span>离散数学（下）</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="helloworld">
-        <div class="time-m-d">12-03</div>
-        <div class="title">
-          <a href="/2022/12/03/helloworld/">
-            <span>helloworld</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="建站记录">
-        <div class="time-m-d">12-03</div>
-        <div class="title">
-          <a href="/2022/12/03/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/">
-            <span>建站记录</span>
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src='https://unpkg.com/valine/dist/Valine.min.js' onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'Sp79ecsmBQdMRaqFDZwPl0vq-gzGzoHsz',
+        appKey: 'Oin4QiNXJP9fKRqn3LowTnau',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-</div>
+
 
         
 <div class="footer">
@@ -574,6 +614,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Datawhale%20AI%20%E5%A4%8F%E4%BB%A4%E8%90%A5-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0 + '&url=' + http%3A%2F%2Fbaoabaob.github.io%2F2024%2F07%2F14%2FDatawhale-AI-%25E5%25A4%258F%25E4%25BB%25A4%25E8%2590%25A5-%25E6%259C%25BA%25E5%2599%25A8%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://baoabaob.github.io/2024/07/14/Datawhale-AI-%E5%A4%8F%E4%BB%A4%E8%90%A5-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
