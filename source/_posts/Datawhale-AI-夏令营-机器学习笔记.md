@@ -6,9 +6,12 @@ categories:
 tags:
 - 笔记
 - AI
+- 夏令营
 ---
 
 # Re0：从零开始的机器学习竞赛入门
+
+[#Datawhale](https://datawhaler.feishu.cn/wiki/FfZvw4QIzibTkQkM6FMcrqCgnce?useEs6=0) [#夏令营](https://datawhaler.feishu.cn/wiki/FfZvw4QIzibTkQkM6FMcrqCgnce?useEs6=0)
 
 前情提要：报名参加了第二期Datawhale 2024 年 AI 夏令营的机器学习方向，本篇作一个笔记的汇总。
 
