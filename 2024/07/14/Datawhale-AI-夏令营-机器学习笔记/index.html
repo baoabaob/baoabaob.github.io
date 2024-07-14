@@ -346,12 +346,31 @@
 <p>首先看看baseline的代码，它很简单，也有充分的注释：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 导入需要用到的相关库</span></span><br><span class="line"><span class="comment"># 导入 pandas 库，用于数据处理和分析</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="comment"># 导入 numpy 库，用于科学计算和多维数组操作</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 读取训练集和测试集</span></span><br><span class="line"><span class="comment"># 使用 read_csv() 函数从文件中读取训练集数据，文件名为 &#x27;train.csv&#x27;</span></span><br><span class="line">train = pd.read_csv(<span class="string">&#x27;./data/data283931/train.csv&#x27;</span>)</span><br><span class="line"><span class="comment"># 使用 read_csv() 函数从文件中读取测试集数据，文件名为 &#x27;test.csv&#x27;</span></span><br><span class="line">test = pd.read_csv(<span class="string">&#x27;./data/data283931/test.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 计算训练数据最近11-20单位时间内对应id的目标均值</span></span><br><span class="line">target_mean = train[train[<span class="string">&#x27;dt&#x27;</span>]&lt;=<span class="number">20</span>].groupby([<span class="string">&#x27;id&#x27;</span>])[<span class="string">&#x27;target&#x27;</span>].mean().reset_index()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 将target_mean作为测试集结果进行合并</span></span><br><span class="line">test = test.merge(target_mean, on=[<span class="string">&#x27;id&#x27;</span>], how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 保存结果文件到本地</span></span><br><span class="line">test[[<span class="string">&#x27;id&#x27;</span>,<span class="string">&#x27;dt&#x27;</span>,<span class="string">&#x27;target&#x27;</span>]].to_csv(<span class="string">&#x27;submit.csv&#x27;</span>, index=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
 <p>具体代码中的方法我就不赘述了，这里其实只用到pandas库，可以参考<a target="_blank" rel="noopener" href="https://www.pypandas.cn/docs/">pandas中文文档</a>。</p>
-<p>9和11行读取了我们之前介绍的训练集和数据集，14行计算训练集中同房间号<strong>最近20天</strong>的电力消耗平均值，但是由于训练集中<strong>只给了最近11天之后</strong>的数据，所以这里实际上是计算过去11-20天的平均电力消耗。这里输出的仍然是一个表。</p>
-<p>17行把结果在id上左连接到测试集。</p>
+<p>下面是官方的代码精读：</p>
+<ol>
+<li>
+<p><strong>导入库</strong>：首先，代码导入了需要用到的库，包括 <code>pandas</code>（用于数据处理和分析）。</p>
+</li>
+<li>
+<p><strong>读取数据</strong>：代码通过使用 <code>pd.read_csv</code> 函数从文件中读取训练集和测试集数据，并将其存储在 <code>train.csv</code> 和 <code>test.csv</code> 两个数据框中。</p>
+</li>
+<li>
+<p><strong>计算最近时间的用电均值</strong>：计算训练数据最近11-20单位时间内对应id的目标均值，可以用来反映最近的用电情况。</p>
+</li>
+<li>
+<p><strong>将用电均值直接作为预测结果</strong>：这里使用<code>merge</code>函数根据<code>'id'</code>列将<code>test</code>和<code>target_mean</code>两个DataFrame进行左连接，这意味着测试集的所有行都会保留。</p>
+</li>
+<li>
+<p>**保存结果文件到本地：**使用<code>to_csv()</code>函数将测试集的<code>'id'</code>、<code>'dt'</code>和<code>'target'</code>列保存为CSV文件，文件名为<code>'submit.csv'</code>。<code>index=None</code>参数表示在保存时不包含行索引。</p>
+</li>
+</ol>
 <p>简而言之，这段代码读取训练集，把<strong>相同房屋id</strong>（也就是同一个房屋）过去11-20天的<strong>平均</strong>电力消耗，作为过去1-10天（即我们要预测的部分）中<strong>每一天</strong>的电力消耗预测结果，并将结果写入测试集，输出最终可以提交到平台的文件。</p>
 <p>以某个房屋为例，如果把我们的预测结果（过去1-10天）和实际数据（过去11天及以后）放在一起，那么它大概长这样。</p>
 <p><img src="http://img.cccake.cc/imgs/202407150035140.png" alt="image-20240715003551253"></p>
-<p>我们暂时完全没有用到机器学习，仅仅用最原始的统计方法给出了一个粗糙的预测结果。当然，它完全称不上准确，但也差不到太离谱，它将作为我们后续模型的baseline，见证我们之后的每一次成长~</p>
+<p>这是一个<strong>经验模型（使用均值作为结果数据）</strong>。我们暂时完全没有用到机器学习，仅仅用最原始的统计方法给出了一个粗糙的预测结果。</p>
+<p><strong>以上代码为何能用来完成赛事要求？</strong></p>
+<p>电力消耗本身波动范围不会太大，且具有一定的周期性。此外考虑实际情况，电力消耗在短期是相对平稳的（季节相同、作息惯性等），因此可以基于前几天的平均值预测后几天。</p>
+<p>当然，它完全称不上准确，但也差不到太离谱，它将作为我们后续模型的baseline，见证我们的每一次成长。</p>
 <hr>
 <p>最佳baseline评分：373.89846</p>
 <p>附预测后00037f39cf房完整电力消耗折线图：</p>
