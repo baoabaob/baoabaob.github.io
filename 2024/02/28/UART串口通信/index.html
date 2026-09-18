@@ -226,20 +226,20 @@
 <h3 id="实践">实践</h3>
 <p>使用STM32cubeMX生成代码，引脚分配略。</p>
 <p>把USART1设置成异步收发模式。</p>
-<img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/f1b00df7b9d13942426b0c661943e957.png" style="zoom:67%;" />
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/f1b00df7b9d13942426b0c661943e957.png" style="zoom:67%;" />
 <p>由于需要使用DMA接收，开启外围到内存的DMA流。</p>
-<img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/812d87d772881b7ff8aa58cd78c8d9d6.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/812d87d772881b7ff8aa58cd78c8d9d6.png" style="zoom:67%;" />
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/812d87d772881b7ff8aa58cd78c8d9d6.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/812d87d772881b7ff8aa58cd78c8d9d6.png" style="zoom:67%;" />
 <p>开启全局中断。</p>
-<img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/7b46922fa3c06c5510899ca474020c59.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/7b46922fa3c06c5510899ca474020c59.png" style="zoom:67%;" />
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/7b46922fa3c06c5510899ca474020c59.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/7b46922fa3c06c5510899ca474020c59.png" style="zoom:67%;" />
 <p>生成代码。</p>
 <p>声明接收数组。</p>
-<img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/d41fa8c9502cd4c54b0801f5dc1a7642.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/d41fa8c9502cd4c54b0801f5dc1a7642.png" style="zoom:67%;" />
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/d41fa8c9502cd4c54b0801f5dc1a7642.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/d41fa8c9502cd4c54b0801f5dc1a7642.png" style="zoom:67%;" />
 <p>在主函数中调用DMA空闲接收函数启动接收。这里我会在中断回调函数重新启动接收，因此无需将其写在while循环中。</p>
-<img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/a23446f54a227caf841c9aefea8e7f1c.png" alt="alt=https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/a23446f54a227caf841c9aefea8e7f1c.png" style="zoom:67%;" />
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/a23446f54a227caf841c9aefea8e7f1c.png" alt="alt=https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/a23446f54a227caf841c9aefea8e7f1c.png" style="zoom:67%;" />
 <p><strong>重载fputc，把printf重定向到串口输出。（有用的trick）</strong></p>
-<img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/cd0e4e183a5086993e36c27d3133b1b7.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/cd0e4e183a5086993e36c27d3133b1b7.png" style="zoom:67%;" />
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/cd0e4e183a5086993e36c27d3133b1b7.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/cd0e4e183a5086993e36c27d3133b1b7.png" style="zoom:67%;" />
 <p>重载回调函数。由于可以接收不定长数据，这里代码是从实验中截取，大概是做一个串口CLI。逻辑很简洁，直接匹配字符串前缀然后进入对应命令的处理函数即可。处理完数据后清空接收缓冲区并重新启动DMA接收，等待接收下一次数据。</p>
-<img src="https://cccake-bucket1.oss-cn-beijing.aliyuncs.com/imgs/1ac7c7d6b70baa7f213ecfe8a601a1f2.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/1ac7c7d6b70baa7f213ecfe8a601a1f2.png" style="zoom:67%;" />
+<img src="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/1ac7c7d6b70baa7f213ecfe8a601a1f2.png" alt="https://hexyl-1308974693.cos.ap-shanghai.myqcloud.com/imgs/1ac7c7d6b70baa7f213ecfe8a601a1f2.png" style="zoom:67%;" />
 
       </div>
       
@@ -365,7 +365,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2024 Oranges</a>
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2026 Oranges</a>
         
     </div>
   
@@ -617,12 +617,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + UART%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1 + '&url=' + http%3A%2F%2Fbaoabaob.github.io%2F2024%2F02%2F28%2FUART%25E4%25B8%25B2%25E5%258F%25A3%25E9%2580%259A%25E4%25BF%25A1%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + UART%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1 + '&url=' + https%3A%2F%2Fblog.cccake.cc%2F2024%2F02%2F28%2FUART%25E4%25B8%25B2%25E5%258F%25A3%25E9%2580%259A%25E4%25BF%25A1%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://baoabaob.github.io/2024/02/28/UART%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://blog.cccake.cc/2024/02/28/UART%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
